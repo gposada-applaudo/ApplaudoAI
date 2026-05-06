@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applaudo | AI Engineering for the Enterprise</title>
+    <meta
+      name="description"
+      content="Applaudo builds enterprise AI with teams who stay in the room from strategy through production."
+    />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-progress" aria-hidden="true"></div>
+    <header class="site-header" data-glass>
+      <a class="brand" href="/" aria-label="Applaudo home">
+        <img src="assets/applaudo.svg" alt="Applaudo" />
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <div class="nav-item has-mega">
+          <button class="nav-trigger" type="button" aria-expanded="false">
+            <span>Industries</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="mega-menu industries-menu">
+            <div class="mega-prominent">
+              <a href="/industries/financial-services"><i class="ri-bank-line" aria-hidden="true"></i><span>Financial Services</span></a>
+              <a href="/industries/retail-consumer"><i class="ri-shopping-bag-3-line" aria-hidden="true"></i><span>Retail & Consumer</span></a>
+              <a href="/industries/travel-hospitality"><i class="ri-plane-line" aria-hidden="true"></i><span>Travel & Hospitality</span></a>
+              <a href="/industries/sports-media-entertainment"><i class="ri-basketball-line" aria-hidden="true"></i><span>Sports & Entertainment</span></a>
+              <a href="/industries/healthcare"><i class="ri-heart-pulse-line" aria-hidden="true"></i><span>Healthcare</span></a>
+              <a href="/industries/manufacturing"><i class="ri-settings-3-line" aria-hidden="true"></i><span>Manufacturing</span></a>
+            </div>
+            <div class="mega-secondary">
+              <a href="/industries/public-sector">Public Sector</a>
+              <a href="/industries/real-estate">Real Estate</a>
+              <a href="/industries/professional-services">Professional Services</a>
+              <a href="/industries/technology">Technology</a>
+              <a class="mega-view-all" href="/industries">View all industries</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-mega">
+          <button class="nav-trigger" type="button" aria-expanded="false">
+            <span>Services</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="mega-menu services-menu">
+            <div class="mega-column">
+              <h2>AI & Data</h2>
+              <a href="/services/ai-engineering">AI Engineering</a>
+              <a href="/services/data-platforms">Data Platforms</a>
+              <a href="/services/ml-ops">ML Ops</a>
+            </div>
+            <div class="mega-column">
+              <h2>Product & Experience</h2>
+              <a href="/services/product-design">Product Design</a>
+              <a href="/services/app-web-development">App & Web Development</a>
+              <a href="/services/quality-engineering">Quality Engineering</a>
+            </div>
+            <div class="mega-column">
+              <h2>Cloud & Platform</h2>
+              <a href="/services/cloud-modernization">Cloud Modernization</a>
+              <a href="/services/cybersecurity">Cybersecurity</a>
+              <a href="/services/support-maintenance">Support & Maintenance</a>
+            </div>
+            <div class="mega-column">
+              <h2>Salesforce Practice</h2>
+              <a href="/services/salesforce-practice">Salesforce Practice</a>
+              <a class="mega-view-all" href="/services">View all services</a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-item has-mega">
+          <button class="nav-trigger" type="button" aria-expanded="false">
+            <span>Work</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="mega-menu compact-menu two-col-menu">
+            <a href="/work">Case Studies</a>
+            <a href="/work/client-outcomes">Client Outcomes</a>
+          </div>
+        </div>
+        <div class="nav-item has-mega">
+          <button class="nav-trigger" type="button" aria-expanded="false">
+            <span>Insights</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="mega-menu compact-menu">
+            <a href="/insights/articles">Articles</a>
+            <a href="/insights/playbooks-guides">Playbooks & Guides</a>
+            <a href="/insights/reports-datasheets">Reports & Datasheets</a>
+            <a href="/insights/webinars-talks">Webinars & Talks</a>
+          </div>
+        </div>
+        <div class="nav-item has-mega">
+          <button class="nav-trigger" type="button" aria-expanded="false">
+            <span>About</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="mega-menu compact-menu">
+            <a href="/about/our-story">Our Story</a>
+            <a href="/about/leadership">Leadership</a>
+            <a href="/about/partnerships-certifications">Partnerships & Certifications</a>
+            <a href="/about/applaudo-link">Applaudo Link</a>
+            <a href="/about/press-awards">Press & Awards</a>
+          </div>
+        </div>
+        <a href="/careers">Careers</a>
+      </nav>
+      <a class="button button-red button-small" href="/contact/start-a-partnership">
+        <span>Talk to an AI engineer</span>
+        <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+      </a>
+      <button class="icon-button menu-button" type="button" aria-label="Open navigation">
+        <i class="ri-menu-line" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero section" data-hero>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">AI engineering for the enterprise</p>
+            <h1>AI Engineered to transform</h1>
+            <p class="hero-subhead">
+              We build AI systems for the largest companies in the Americas. The kind
+              that has to work on Monday morning, in front of real users, at the scale
+              the business actually runs at.
+            </p>
+            <div class="button-row">
+              <a class="button button-red" href="/contact/start-a-partnership">
+                <span>Talk to an AI engineer</span>
+                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+              </a>
+              <a class="button button-glass" href="/work">
+                <span>See AI we've built</span>
+                <i class="ri-arrow-right-line" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="hero-photo-system" aria-label="Applaudo teams building enterprise AI">
+            <div class="hero-photo hero-photo-main"></div>
+            <div class="hero-photo-card hero-proof-card">
+              <span>Past launch</span>
+              <p>Runbooks, retraining, dashboards, and the next version in view.</p>
+            </div>
+            <div class="hero-photo-card hero-team-card">
+              <span>With your team</span>
+              <p>Data, product, cloud, security, and AI engineering in one room.</p>
+            </div>
+            <div class="hero-glass-accent" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section focus-section reveal">
+        <div class="section-inner focus-layout">
+          <div>
+            <h2>AI built to last past the demo.</h2>
+            <p>Beautiful in the notebook. Stable in production. Still working in year three.</p>
+            <p>That's the standard. We've spent twelve years engineering for it.</p>
+          </div>
+          <div class="focus-photo photo-frame" aria-hidden="true"></div>
+          <div class="stats-row">
+            <div>
+              <i class="ri-team-line" aria-hidden="true"></i>
+              <strong>800+</strong><span>engineers</span>
+            </div>
+            <div>
+              <i class="ri-global-line" aria-hidden="true"></i>
+              <strong>27</strong><span>countries</span>
+            </div>
+            <div>
+              <i class="ri-stack-line" aria-hidden="true"></i>
+              <strong>12+</strong><span>years in production</span>
+            </div>
+            <div>
+              <i class="ri-loop-right-line" aria-hidden="true"></i>
+              <strong>90%</strong><span>client retention</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section trust-section reveal">
+        <div class="section-inner">
+          <p class="section-kicker">Building AI for enterprise leaders across the Americas.</p>
+          <div class="logo-cloud" aria-label="Client logos">
+            <figure><img src="assets/clients/Walmart.svg" alt="Walmart" /></figure>
+            <figure><img src="assets/clients/NBC_Sports.svg" alt="NBC Sports" /></figure>
+            <figure><img src="assets/clients/NCAA.svg" alt="NCAA" /></figure>
+            <figure><img src="assets/clients/Ritz-Carlton.svg" alt="Ritz-Carlton" /></figure>
+            <figure><img src="assets/clients/Golden_State_Warriors.svg" alt="Golden State Warriors" /></figure>
+            <figure><img src="assets/clients/Volaris.svg" alt="Volaris" /></figure>
+            <figure><img src="assets/clients/Rappi.svg" alt="Rappi" /></figure>
+            <figure><img src="assets/clients/Dollarama.svg" alt="Dollarama" /></figure>
+            <figure><img src="assets/clients/Miami_Heat.svg" alt="Miami HEAT" /></figure>
+            <figure><img src="assets/clients/Holiday_Inn.svg" alt="Holiday Inn" /></figure>
+            <figure><img src="assets/clients/Lifemiles.svg" alt="Lifemiles" /></figure>
+            <figure><img src="assets/clients/Keller_Williams.svg" alt="Keller Williams" /></figure>
+            <figure><img src="assets/clients/MRO_Solutions.svg" alt="MRO Holdings" /></figure>
+            <figure><img src="assets/clients/Sxsw.svg" alt="SXSW" /></figure>
+            <figure><img src="assets/clients/Real_Madrid.svg" alt="Real Madrid" /></figure>
+            <figure><img src="assets/clients/Bain.svg" alt="Bain & Company" /></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reasons-section reveal">
+        <div class="section-inner">
+          <div class="split-heading">
+            <h2>A different kind of AI partner.</h2>
+            <p>Three things we do, every engagement.</p>
+          </div>
+          <div class="reasons-system">
+            <div class="reason-visual" aria-hidden="true">
+              <div class="reason-photo"></div>
+              <div class="reason-layers">
+                <span>Data</span>
+                <span>Runbook</span>
+                <span>Roadmap</span>
+              </div>
+            </div>
+            <div class="reason-stack">
+            <article class="reason-item">
+              <span>01</span>
+              <h3>We start with your data.</h3>
+              <p>
+                The model is the easy part. The work is everything around it: your data, your evaluation criteria, and the failure modes that matter most. The model gets chosen later, with you, alongside the cheapest one that fits.
+              </p>
+            </article>
+            <article class="reason-item">
+              <span>02</span>
+              <h3>We stay through year three.</h3>
+              <p>
+                Every system ships with the runbook, the retraining pipeline, and the dashboard your team will run it from. We hand it all over on day one. We're still in the room when the next version gets scoped.
+              </p>
+            </article>
+            <article class="reason-item">
+              <span>03</span>
+              <h3>We tell you what we'd build first.</h3>
+              <p>
+                Sometimes that means waiting. Sometimes it means starting somewhere else. Always it means the honest read, on the first call, before the proposal.
+              </p>
+            </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section work-section reveal">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <h2>Work already in the wild.</h2>
+            </div>
+            <a class="button button-glass desktop-only" href="/work">
+              <span>See all AI projects</span>
+              <i class="ri-arrow-right-line" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="case-grid">
+            <a class="case-card case-card-feature" href="/work/retail-inventory-forecasting">
+              <div class="case-visual visual-retail" aria-hidden="true"></div>
+              <div>
+                <span class="case-number">01</span>
+                <p class="tagline">Retail & Consumer · AI Engineering, Data Platforms</p>
+                <h3>A Fortune 1 retailer rebuilt inventory forecasting around AI and predictive analytics.</h3>
+                <p class="result">Forecast cycle time reduction pending client approval.</p>
+              </div>
+            </a>
+            <a class="case-card" href="/work/arena-operations-ai">
+              <div class="case-visual visual-sports" aria-hidden="true"></div>
+              <div>
+                <span class="case-number">02</span>
+                <p class="tagline">Sports, Media & Entertainment · AI Engineering, Product Design</p>
+                <h3>An NBA franchise modernized arena operations with real-time AI and unified data.</h3>
+                <p class="result">Operational efficiency lift pending client approval.</p>
+              </div>
+            </a>
+            <a class="case-card" href="/work/mobile-booking-personalization">
+              <div class="case-visual visual-travel" aria-hidden="true"></div>
+              <div>
+                <span class="case-number">03</span>
+                <p class="tagline">Travel & Hospitality · AI Engineering, Mobile, Personalization</p>
+                <h3>A luxury cruise brand drove higher mobile booking conversion with real-time AI personalization.</h3>
+                <p class="result">Mobile booking conversion lift pending client approval.</p>
+              </div>
+            </a>
+          </div>
+          <a class="button button-glass mobile-only" href="/work">
+            <span>See all AI projects</span>
+            <i class="ri-arrow-right-line" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="section industries-section reveal" id="industries-preview">
+        <div class="section-inner industry-board">
+          <div class="industry-board-copy">
+              <p class="eyebrow">Industry depth</p>
+              <h2>Where AI gets specific.</h2>
+              <p>
+                Every industry has its own operating reality. The useful system is the one
+                that understands it before the model ever runs.
+              </p>
+              <a class="button button-glass" href="/industries">
+                <span>Explore all industries</span>
+                <i class="ri-arrow-right-line" aria-hidden="true"></i>
+              </a>
+          </div>
+          <div class="industry-tile-grid">
+            <a class="industry-tile industry-visual-retail" href="/industries/retail-consumer">
+              <span>
+                <i class="ri-shopping-bag-3-line" aria-hidden="true"></i>
+                Retail & Consumer
+              </span>
+              <p>Demand · Content · Commerce</p>
+            </a>
+            <a class="industry-tile industry-visual-travel" href="/industries/travel-hospitality">
+              <span>
+                <i class="ri-plane-line" aria-hidden="true"></i>
+                Travel & Hospitality
+              </span>
+              <p>Booking · Loyalty · Guest ops</p>
+            </a>
+            <a class="industry-tile industry-visual-sports" href="/industries/sports-media-entertainment">
+              <span>
+                <i class="ri-basketball-line" aria-hidden="true"></i>
+                Sports, Media & Entertainment
+              </span>
+              <p>Venue · Broadcast · Fan data</p>
+            </a>
+            <a class="industry-tile industry-visual-finance" href="/industries/financial-services">
+              <span>
+                <i class="ri-bank-line" aria-hidden="true"></i>
+                Financial Services
+              </span>
+              <p>Risk · Fraud · Compliance</p>
+            </a>
+            <a class="industry-tile industry-visual-healthcare" href="/industries/healthcare">
+              <span>
+                <i class="ri-heart-pulse-line" aria-hidden="true"></i>
+                Healthcare
+              </span>
+              <p>Care · Triage · Patient systems</p>
+            </a>
+            <a class="industry-tile industry-visual-manufacturing" href="/industries/manufacturing">
+              <span>
+                <i class="ri-settings-3-line" aria-hidden="true"></i>
+                Manufacturing
+              </span>
+              <p>Inspection · Failure · Supply chain</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section engagement-section reveal">
+        <div class="section-inner">
+          <div class="split-heading">
+            <h2>Three ways to start.</h2>
+            <p>
+              Pick the mode that matches the moment.
+            </p>
+          </div>
+          <div class="engagement-grid">
+            <a class="engagement-card" href="/services/ai-strategy">
+              <span>01</span>
+              <h3>Strategy.</h3>
+              <p>When you don't know what to build yet.</p>
+            </a>
+            <a class="engagement-card" href="/services/ai-build">
+              <span>02</span>
+              <h3>Build.</h3>
+              <p>When you know what to build, and need senior engineers to ship it.</p>
+            </a>
+            <a class="engagement-card" href="/services/ai-operate">
+              <span>03</span>
+              <h3>Operate.</h3>
+              <p>When it's running, and the work is keeping it running.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section notes-section reveal" id="notes-preview">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <h2>Notes from the build.</h2>
+              <p>Written by the people doing the work. As they're doing it.</p>
+            </div>
+            <a class="button button-glass desktop-only" href="/insights">
+              <span>Read more field notes</span>
+              <i class="ri-arrow-right-line" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="notes-layout">
+            <a class="note-feature" href="/insights/putting-ai-into-production">
+              <p class="tagline">Strategy guide</p>
+              <h3>Putting AI into production: a decision framework for technology leaders.</h3>
+              <div class="author"><span>SA</span><p>Senior AI engineer</p></div>
+            </a>
+            <div class="note-list">
+              <a class="note-row" href="/insights/production-grade-ai-playbook">
+                <span class="note-index">02</span>
+                <p class="tagline">Engineering playbook</p>
+                <h3>Building your first production-grade AI system: an engineering playbook.</h3>
+              </a>
+              <a class="note-row" href="/insights/why-ai-pilots-stall">
+                <span class="note-index">03</span>
+                <p class="tagline">Field note</p>
+                <h3>Why most enterprise AI pilots never reach production, and what to do instead.</h3>
+              </a>
+            </div>
+          </div>
+          <a class="button button-glass mobile-only" href="/insights">
+            <span>Read more field notes</span>
+            <i class="ri-arrow-right-line" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="section recognition-section reveal">
+        <div class="section-inner">
+          <p class="section-kicker">Recognized for the AI work we've shipped.</p>
+          <div class="recognition-row">
+            <span>Google Cloud Partner of the Year 2026 — Public Sector LATAM</span>
+            <span>Premier Partner — AWS</span>
+            <span>Microsoft</span>
+            <span>Salesforce</span>
+            <span>Mandiant</span>
+            <span>Fortinet</span>
+            <span>ISO 27001 Certified</span>
+            <span>IQNet Certified</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta reveal">
+        <div class="section-inner narrow">
+          <h2>The first conversation isn't a scoping call.</h2>
+          <p>
+            It's an honest exchange about where AI is going in your industry, what you
+            should build now, what you should wait on, and whether we're the right people
+            to build it with you. We hold one of those conversations a week. Book yours.
+          </p>
+          <div class="button-row centered">
+            <a class="button button-red" href="/contact/start-a-partnership">
+              <span>Book a 30-minute conversation</span>
+              <i class="ri-calendar-schedule-line" aria-hidden="true"></i>
+            </a>
+            <a class="button button-glass" href="/insights/subscribe">
+              <span>Subscribe to the AI brief</span>
+              <i class="ri-mail-line" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/applaudo.svg" alt="Applaudo" />
+          <p>Austin, TX · San Salvador, SS</p>
+        </div>
+        <div class="footer-columns">
+          <div>
+            <h2>Services</h2>
+            <a href="/services/ai-strategy">AI Strategy</a>
+            <a href="/services/ai-build">AI Build</a>
+            <a href="/services/ai-operate">AI Operate</a>
+            <a href="/services/engineering-disciplines">Engineering Disciplines</a>
+          </div>
+          <div>
+            <h2>Industries</h2>
+            <a href="/industries/retail-consumer">Retail & Consumer</a>
+            <a href="/industries/travel-hospitality">Travel & Hospitality</a>
+            <a href="/industries/sports-media-entertainment">Sports, Media & Entertainment</a>
+            <a href="/industries/financial-services">Financial Services</a>
+          </div>
+          <div>
+            <h2>Company</h2>
+            <a href="/about">About</a>
+            <a href="/careers">Careers</a>
+            <a href="/contact">Contact</a>
+            <a href="/about/press-recognition">Press</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-badges">
+        <span>Google Cloud</span><span>AWS</span><span>Microsoft</span><span>Salesforce</span>
+        <span>Mandiant</span><span>Fortinet</span><span>ISO 27001</span><span>IQNet</span>
+      </div>
+      <div class="footer-bottom">
+        <div class="socials" aria-label="Social links">
+          <a class="icon-button" href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a>
+          <a class="icon-button" href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a class="icon-button" href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+        </div>
+        <div class="legal-links">
+          <a href="/privacy-policy">Privacy policy</a>
+          <a href="/cookie-policy">Cookie policy</a>
+          <a href="/terms-of-service">Terms of service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
