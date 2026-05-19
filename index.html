@@ -18,112 +18,14 @@
   </head>
   <body>
     <div class="site-progress" aria-hidden="true"></div>
-    <header class="site-header" data-glass>
-      <a class="brand" href="/" aria-label="Applaudo home">
-        <img src="assets/applaudo.svg" alt="Applaudo" />
-      </a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <div class="nav-item has-mega">
-          <button class="nav-trigger" type="button" aria-expanded="false">
-            <span>Industries</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-          </button>
-          <div class="mega-menu industries-menu">
-            <div class="mega-prominent">
-              <a href="/industries/financial-services"><i class="ri-bank-line" aria-hidden="true"></i><span>Financial Services</span></a>
-              <a href="/industries/retail-consumer"><i class="ri-shopping-bag-3-line" aria-hidden="true"></i><span>Retail & Consumer</span></a>
-              <a href="/industries/travel-hospitality"><i class="ri-plane-line" aria-hidden="true"></i><span>Travel & Hospitality</span></a>
-              <a href="/industries/sports-media-entertainment"><i class="ri-basketball-line" aria-hidden="true"></i><span>Sports & Entertainment</span></a>
-              <a href="/industries/healthcare"><i class="ri-heart-pulse-line" aria-hidden="true"></i><span>Healthcare</span></a>
-              <a href="/industries/manufacturing"><i class="ri-settings-3-line" aria-hidden="true"></i><span>Manufacturing</span></a>
-            </div>
-            <div class="mega-secondary">
-              <a href="/industries/public-sector">Public Sector</a>
-              <a href="/industries/real-estate">Real Estate</a>
-              <a href="/industries/professional-services">Professional Services</a>
-              <a href="/industries/technology">Technology</a>
-              <a class="mega-view-all" href="/industries">View all industries</a>
-            </div>
-          </div>
-        </div>
-        <div class="nav-item has-mega">
-          <button class="nav-trigger" type="button" aria-expanded="false">
-            <span>Services</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-          </button>
-          <div class="mega-menu services-menu">
-            <div class="mega-column">
-              <h2>AI & Data</h2>
-              <a href="/services/ai-engineering">AI Engineering</a>
-              <a href="/services/data-platforms">Data Platforms</a>
-              <a href="/services/ml-ops">ML Ops</a>
-            </div>
-            <div class="mega-column">
-              <h2>Product & Experience</h2>
-              <a href="/services/product-design">Product Design</a>
-              <a href="/services/app-web-development">App & Web Development</a>
-              <a href="/services/quality-engineering">Quality Engineering</a>
-            </div>
-            <div class="mega-column">
-              <h2>Cloud & Platform</h2>
-              <a href="/services/cloud-modernization">Cloud Modernization</a>
-              <a href="/services/cybersecurity">Cybersecurity</a>
-              <a href="/services/support-maintenance">Support & Maintenance</a>
-            </div>
-            <div class="mega-column">
-              <h2>Salesforce Practice</h2>
-              <a href="/services/salesforce-practice">Salesforce Practice</a>
-              <a class="mega-view-all" href="/services">View all services</a>
-            </div>
-          </div>
-        </div>
-        <div class="nav-item has-mega">
-          <button class="nav-trigger" type="button" aria-expanded="false">
-            <span>Work</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-          </button>
-          <div class="mega-menu compact-menu two-col-menu">
-            <a href="/work">Case Studies</a>
-            <a href="/work/client-outcomes">Client Outcomes</a>
-          </div>
-        </div>
-        <div class="nav-item has-mega">
-          <button class="nav-trigger" type="button" aria-expanded="false">
-            <span>Insights</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-          </button>
-          <div class="mega-menu compact-menu">
-            <a href="/insights/articles">Articles</a>
-            <a href="/insights/playbooks-guides">Playbooks & Guides</a>
-            <a href="/insights/reports-datasheets">Reports & Datasheets</a>
-            <a href="/insights/webinars-talks">Webinars & Talks</a>
-          </div>
-        </div>
-        <div class="nav-item has-mega">
-          <button class="nav-trigger" type="button" aria-expanded="false">
-            <span>About</span><i class="ri-arrow-down-s-line" aria-hidden="true"></i>
-          </button>
-          <div class="mega-menu compact-menu">
-            <a href="/about/our-story">Our Story</a>
-            <a href="/about/leadership">Leadership</a>
-            <a href="/about/partnerships-certifications">Partnerships & Certifications</a>
-            <a href="/about/applaudo-link">Applaudo Link</a>
-            <a href="/about/press-awards">Press & Awards</a>
-          </div>
-        </div>
-        <a href="/careers">Careers</a>
-      </nav>
-      <a class="button button-red button-small" href="/contact/start-a-partnership">
-        <span>Talk to an AI engineer</span>
-        <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
-      </a>
-      <button class="icon-button menu-button" type="button" aria-label="Open navigation">
-        <i class="ri-menu-line" aria-hidden="true"></i>
-      </button>
-    </header>
+    <div id="site-nav"></div>
 
     <main>
       <section class="hero section" data-hero>
         <div class="hero-inner">
           <div class="hero-copy">
             <p class="eyebrow">AI engineering for the enterprise</p>
-            <h1>AI Engineered to transform</h1>
+            <h1>AI Engineered to Transform</h1>
             <p class="hero-subhead">
               We build AI systems for the largest companies in the Americas. The kind
               that has to work on Monday morning, in front of real users, at the scale
@@ -156,8 +58,21 @@
       </section>
 
       <section class="ai-stack-section reveal">
+        <video
+          class="ai-stack-video is-active"
+          src="assets/video/Glass_forward.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        ></video>
         <div class="ai-stack-inner">
           <div class="ai-stack-copy">
+            <div class="ai-spark-chip ai-stack-spark" aria-hidden="true">
+              <img src="assets/ui/ai-spark.svg" alt="" />
+            </div>
             <h2>AI is in the way we engineer. The way we test. The way we ship. The way we operate.</h2>
             <p>
               Not on top of our work. Inside it. From the first architecture decision
@@ -169,17 +84,43 @@
             <p class="ai-stack-label">Inside our stack</p>
             <div class="ai-stack-logos">
               <div class="ai-stack-logo">
-                <img src="assets/openai-logo.svg" alt="OpenAI" />
+                <img src="assets/stack/openai-logo.svg" alt="OpenAI" />
               </div>
               <div class="ai-stack-logo">
-                <img src="assets/anthropic-logo.svg" alt="Anthropic" />
+                <img src="assets/stack/anthropic-logo.svg" alt="Anthropic" />
               </div>
               <div class="ai-stack-logo">
-                <img src="assets/google-gemini-logo.svg" alt="Google Gemini" />
+                <img src="assets/stack/google-gemini-logo.svg" alt="Google Gemini" />
               </div>
               <div class="ai-stack-logo">
-                <img src="assets/microsoft-copilot-logo.svg" alt="Microsoft Copilot" />
+                <img src="assets/stack/microsoft-copilot-logo.svg" alt="Microsoft Copilot" />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section value-prop-section reveal">
+        <div class="section-inner value-prop-shell">
+          <div class="value-prop-heading">
+            <p class="eyebrow">AI-native delivery</p>
+            <h2>The AI partner that engineers the full enterprise stack.</h2>
+          </div>
+          <div class="value-prop-body">
+            <p class="value-prop-lede">
+              We build across every layer: the application, the data that feeds it,
+              the cloud it runs on, and the operating model your team runs it from.
+              That's how AI reaches production and stays there.
+            </p>
+            <div class="value-prop-actions button-row">
+              <a class="button button-red" href="/contact/start-a-partnership">
+                <span>Talk to an AI engineer</span>
+                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+              </a>
+              <a class="button button-glass" href="/work">
+                <span>See AI we've built</span>
+                <i class="ri-arrow-right-line" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -194,19 +135,19 @@
           <div class="stats-row">
             <div>
               <i class="ri-team-line" aria-hidden="true"></i>
-              <strong>800+</strong><span>engineers</span>
+              <strong data-stat-value="800" data-stat-suffix="+">800+</strong><span>engineers</span>
             </div>
             <div>
               <i class="ri-global-line" aria-hidden="true"></i>
-              <strong>27</strong><span>countries</span>
+              <strong data-stat-value="27">27</strong><span>countries</span>
             </div>
             <div>
               <i class="ri-stack-line" aria-hidden="true"></i>
-              <strong>12+</strong><span>years in production</span>
+              <strong data-stat-value="12" data-stat-suffix="+">12+</strong><span>years in production</span>
             </div>
             <div>
               <i class="ri-loop-right-line" aria-hidden="true"></i>
-              <strong>90%</strong><span>client retention</span>
+              <strong data-stat-value="90" data-stat-suffix="%">90%</strong><span>client retention</span>
             </div>
           </div>
         </div>
@@ -281,13 +222,7 @@
       <section class="section work-section reveal">
         <div class="section-inner">
           <div class="section-heading">
-            <div>
-              <h2>Work already in the wild.</h2>
-            </div>
-            <a class="button button-glass desktop-only" href="/work">
-              <span>See all AI projects</span>
-              <i class="ri-arrow-right-line" aria-hidden="true"></i>
-            </a>
+            <h2>Work already in the wild.</h2>
           </div>
           <div class="case-grid">
             <a class="case-card case-card-feature" href="/work/retail-inventory-forecasting">
@@ -318,10 +253,12 @@
               </div>
             </a>
           </div>
-          <a class="button button-glass mobile-only" href="/work">
-            <span>See all AI projects</span>
-            <i class="ri-arrow-right-line" aria-hidden="true"></i>
-          </a>
+          <div class="button-row centered section-exit-actions">
+            <a class="button button-glass" href="/work">
+              <span>See all AI projects</span>
+              <i class="ri-arrow-right-line" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -417,14 +354,8 @@
       <section class="section notes-section reveal" id="notes-preview">
         <div class="section-inner">
           <div class="section-heading">
-            <div>
-              <h2>Notes from the build.</h2>
-              <p>Written by the people doing the work. As they're doing it.</p>
-            </div>
-            <a class="button button-glass desktop-only" href="/insights">
-              <span>Read more field notes</span>
-              <i class="ri-arrow-right-line" aria-hidden="true"></i>
-            </a>
+            <h2>Notes from the build.</h2>
+            <p>Written by the people doing the work. As they're doing it.</p>
           </div>
           <div class="notes-layout">
             <a class="note-feature" href="/insights/putting-ai-into-production">
@@ -445,25 +376,56 @@
               </a>
             </div>
           </div>
-          <a class="button button-glass mobile-only" href="/insights">
-            <span>Read more field notes</span>
-            <i class="ri-arrow-right-line" aria-hidden="true"></i>
-          </a>
+          <div class="button-row centered section-exit-actions">
+            <a class="button button-glass" href="/insights">
+              <span>Read more field notes</span>
+              <i class="ri-arrow-right-line" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </section>
 
       <section class="section recognition-section reveal">
         <div class="section-inner">
-          <p class="section-kicker">Recognized for the AI work we've shipped.</p>
-          <div class="recognition-row">
-            <span>Google Cloud Partner of the Year 2026 — Public Sector LATAM</span>
-            <span>Premier Partner — AWS</span>
-            <span>Microsoft</span>
-            <span>Salesforce</span>
-            <span>Mandiant</span>
-            <span>Fortinet</span>
-            <span>ISO 27001 Certified</span>
-            <span>IQNet Certified</span>
+          <div class="recognition-layout">
+            <figure class="award-feature">
+              <img src="assets/awards/google-cloud-award.png" alt="Google Cloud Partner of the Year 2026 Public Sector LATAM award" />
+              <figcaption>
+                <h2>Google Cloud Partner of the Year 2026</h2>
+                <p>Public Sector LATAM</p>
+              </figcaption>
+            </figure>
+            <div class="recognition-partners">
+              <p class="section-kicker">Partners that trust us</p>
+              <div class="partner-badge-grid" aria-label="Google Cloud badges and Microsoft partnership">
+                <div class="partner-badge badge-gcp-award">
+                  <img src="assets/partners/google-cloud-partner.svg" alt="Google Cloud Partner of the Year 2026 badge" />
+                </div>
+                <div class="partner-badge badge-gcp-cosell">
+                  <img src="assets/partners/google-cloud-cosell.svg" alt="Google Cloud co-sell partner badge" />
+                </div>
+                <div class="partner-badge badge-gcp-services">
+                  <img src="assets/partners/google-cloud-services.svg" alt="Google Cloud services partner badge" />
+                </div>
+                <div class="partner-badge badge-logo badge-microsoft">
+                  <img src="assets/partners/microsoft-partner.svg" alt="Microsoft" />
+                </div>
+              </div>
+              <div class="partner-logo-row" aria-label="Additional partner recognitions">
+                <div class="partner-badge badge-logo badge-salesforce">
+                  <img src="assets/partners/salesforce-partner.svg" alt="Salesforce Partner" />
+                </div>
+                <div class="partner-badge badge-logo badge-mandiant">
+                  <img src="assets/partners/mandiant-partner.svg" alt="Mandiant" />
+                </div>
+                <div class="partner-badge badge-logo badge-fortinet">
+                  <img src="assets/partners/fortinet-partner.svg" alt="Fortinet" />
+                </div>
+                <div class="partner-badge badge-aws">
+                  <img src="assets/partners/aws-partner.svg" alt="AWS Partner Select Tier Services badge" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -493,7 +455,7 @@
     <footer class="site-footer">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/applaudo.svg" alt="Applaudo" />
+          <img src="assets/brand/applaudo.svg" alt="Applaudo" />
           <p>Austin, TX · San Salvador, SS</p>
         </div>
         <div class="footer-columns">

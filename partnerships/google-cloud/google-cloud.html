@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Cloud Partner | Applaudo</title>
+    <meta
+      name="description"
+      content="Applaudo builds on Vertex AI, BigQuery, and Google Kubernetes Engine — named Google Cloud Public Sector Partner of the Year 2026 for LATAM."
+    />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <style>
+      /* ─── No blurs anywhere on this page ─── */
+      .site-header {
+        background: oklch(99.5% 0.003 25);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: 0 1px 0 rgba(18, 18, 18, 0.08);
+      }
+      .mega-menu,
+      .mega-menu::before {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .mega-menu {
+        background: oklch(99.5% 0.003 25);
+      }
+
+      /* Hero overlay gradient — cool blue tint on the left */
+      .partner-hero::before {
+        background:
+          linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.78) 43%, rgba(255,255,255,0.18) 100%),
+          radial-gradient(circle at 20% 44%, color-mix(in oklab, oklch(55% 0.2 264) 10%, transparent), transparent 30%),
+          radial-gradient(circle at 84% 62%, color-mix(in oklab, oklch(55% 0.2 264) 6%, transparent), transparent 26%);
+      }
+
+      /* ─── Hero badge: square logo area + auto-height text area ─── */
+      .partner-hero-badge {
+        display: grid;
+        grid-template-rows: auto auto;
+        width: min(300px, 100%);
+        min-height: 0;
+        padding: 0;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.74);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: 0 22px 58px rgba(18, 18, 18, 0.1);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        --partner-accent: oklch(55% 0.2 264);
+      }
+
+      .partner-hero-badge::before {
+        display: none;
+      }
+
+      /* Top half: square, glass, logo centered — matches .ai-stack-logo style */
+      .partner-badge-top {
+        aspect-ratio: 1 / 1;
+        background: rgba(255, 255, 255, 0.66);
+        display: grid;
+        place-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.74);
+        backdrop-filter: blur(24px) saturate(1.35);
+        -webkit-backdrop-filter: blur(24px) saturate(1.35);
+      }
+
+      .partner-badge-mark {
+        width: 210px;
+        height: auto;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        margin-bottom: 0;
+      }
+
+      .partner-badge-mark img {
+        width: 100%;
+        height: auto;
+      }
+
+      /* Bottom half: dark, sized to text, left-aligned */
+      .partner-badge-bottom {
+        background: var(--black);
+        padding: clamp(20px, 2.5vw, 28px);
+        display: grid;
+        gap: 6px;
+      }
+
+      /* Override styles.css .partner-hero-badge p (specificity 0,1,1) */
+      .partner-hero-badge p {
+        max-width: none;
+        margin: 0;
+        color: var(--partner-accent);
+        font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+        font-weight: var(--demi);
+        line-height: 1.25;
+      }
+
+      .partner-badge-subtitle {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: var(--text-body-sm);
+        line-height: 1.5;
+      }
+
+      /* Status grid: neutral soft */
+      .partner-status-item {
+        background: var(--soft);
+      }
+      .partner-status-item:first-child {
+        background: var(--soft);
+      }
+      .partner-status-item:hover {
+        background: var(--soft);
+      }
+
+      /* Stack section: neutral gradient */
+      .partner-stack-section {
+        background: linear-gradient(180deg, var(--white), var(--soft));
+      }
+
+      /* Stack table: solid white */
+      .partner-stack-table {
+        background: var(--white);
+      }
+
+      /* Stack row hover: Google blue tint */
+      .partner-stack-row:hover {
+        border-color: color-mix(in oklab, oklch(55% 0.2 264) 30%, rgba(18, 18, 18, 0.12));
+        background: color-mix(in oklab, oklch(55% 0.2 264) 5%, transparent);
+      }
+
+      /* Co-sell section: neutral soft */
+      .partner-cosell-section {
+        background: var(--soft);
+      }
+
+      /* Co-sell layout: Applaudo black */
+      .partner-cosell-layout {
+        background: var(--black);
+      }
+
+      /* Lead card: Google blue radial */
+      .partner-lead-card {
+        background:
+          linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.06)),
+          radial-gradient(circle at 74% 18%, color-mix(in oklab, oklch(55% 0.2 264) 18%, transparent), transparent 34%);
+      }
+
+      /* Lead photo: reset to show badge image */
+      .partner-lead-photo {
+        display: block;
+        width: min(120px, 100%);
+        height: auto;
+        margin: 0 0 clamp(28px, 3vw, 34px);
+        background: transparent;
+        color: inherit;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      /* ─── Section padding rhythm ─── */
+      .partner-status-section {
+        padding-top: clamp(80px, 9vw, 120px);
+        padding-bottom: clamp(48px, 4.5vw, 64px);
+      }
+
+      .partner-stack-section {
+        padding-top: clamp(52px, 5vw, 72px);
+        padding-bottom: clamp(88px, 9vw, 124px);
+      }
+
+      .partner-case-section {
+        padding-top: clamp(88px, 9vw, 128px);
+        padding-bottom: clamp(72px, 7vw, 96px);
+      }
+
+      .partner-cosell-section {
+        padding-top: clamp(104px, 11vw, 156px);
+        padding-bottom: clamp(104px, 11vw, 156px);
+      }
+
+      .partner-final-cta {
+        padding-top: clamp(112px, 12vw, 168px);
+        padding-bottom: clamp(96px, 10vw, 140px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-progress" aria-hidden="true"></div>
+    <div id="site-nav"></div>
+
+    <main class="partner-page google-cloud-partner-page">
+      <section class="section services-hero partner-hero reveal">
+        <video
+          class="services-hero-video"
+          src="../../assets/video/Google.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        ></video>
+        <div class="section-inner services-hero-grid partner-hero-grid">
+          <div class="services-hero-copy partner-hero-copy">
+            <p class="eyebrow">Partnerships / Google Cloud</p>
+            <h1>Google Cloud, built for production.</h1>
+            <p class="hero-subhead">
+              Vertex AI. BigQuery. GKE. Named Google Cloud Public Sector
+              Partner of the Year 2026 for LATAM.
+            </p>
+            <div class="button-row">
+              <a class="button button-red" href="/contact/start-a-partnership">
+                <span>Talk to an AI engineer</span>
+                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <aside class="partner-hero-badge" aria-label="Google Cloud partnership status">
+            <div class="partner-badge-top">
+              <div class="partner-badge-mark">
+                <img src="../../assets/partners/google-cloud-cosell.svg" alt="Google Cloud Co-Sell Partner" width="210" height="auto" />
+              </div>
+            </div>
+            <div class="partner-badge-bottom">
+              <p class="partner-badge-title">Google Cloud Premier Partner</p>
+              <span class="partner-badge-subtitle">Partner of the Year 2026 · LATAM</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section partner-status-section reveal">
+        <div class="section-inner partner-status-shell">
+          <div class="partner-status-heading">
+            <p class="eyebrow">Google Cloud partnership proof</p>
+            <h2>Credentials, confirmed.</h2>
+            <p class="partner-status-copy">Partnership tier, specializations, co-sell readiness, and joint customer signals — arranged for fast partner review.</p>
+          </div>
+          <div class="partner-status-grid" aria-label="Google Cloud partnership proof points">
+            <article class="partner-status-item has-badge">
+              <div>
+                <span>Partnership tier</span>
+                <strong>Google Cloud Premier Partner</strong>
+                <p>Confirm tier with Partnerships.</p>
+              </div>
+              <img class="partner-status-badge-icon" src="../../assets/partners/google-cloud-cosell.svg" alt="Google Cloud Co-Sell Partner" width="140" height="140" />
+            </article>
+            <article class="partner-status-item is-placeholder">
+              <span>Partner of the Year</span>
+              <strong>2026 · LATAM Public Sector</strong>
+              <p>Confirm award details with Partnerships.</p>
+            </article>
+            <article class="partner-status-item is-placeholder">
+              <span>Certified engineers</span>
+              <strong>Confirm</strong>
+              <p>Talent / People Ops to confirm.</p>
+            </article>
+            <article class="partner-status-item is-placeholder">
+              <span>Active specializations</span>
+              <strong>Confirm</strong>
+              <p>Partnerships to confirm full list.</p>
+            </article>
+            <article class="partner-status-item is-placeholder">
+              <span>Joint customers</span>
+              <strong>Confirm</strong>
+              <p>Sales Ops to confirm.</p>
+            </article>
+            <article class="partner-status-item is-placeholder">
+              <span>Co-sell status</span>
+              <strong>Confirm</strong>
+              <p>Partnerships to confirm.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section partner-stack-section reveal">
+        <div class="section-inner partner-stack-layout">
+          <aside class="partner-stack-copy" aria-label="Google Cloud stack summary">
+            <div class="ai-spark-chip" aria-hidden="true">
+              <img src="../../assets/ui/ai-spark.svg" alt="" />
+            </div>
+            <h2>AI services on the Google Cloud stack.</h2>
+            <p>Every Applaudo service has a clear Google Cloud execution path, from Vertex AI strategy through production operations on GKE.</p>
+          </aside>
+          <div class="partner-stack-table" aria-label="Applaudo services mapped to Google Cloud capabilities">
+            <div class="partner-stack-row">
+              <span>AI Strategy &amp; Transformation</span>
+              <p>Google Cloud AI Adoption Framework, Gemini AI roadmaps, cloud migration strategy</p>
+            </div>
+            <div class="partner-stack-row">
+              <span>AI Build &amp; Deployment</span>
+              <p>Vertex AI, Gemini API, Agent Builder, Model Garden, AI Studio</p>
+            </div>
+            <div class="partner-stack-row">
+              <span>AI Engineering</span>
+              <p>Google Kubernetes Engine, Cloud Run, Cloud Functions, App Engine, Apigee</p>
+            </div>
+            <div class="partner-stack-row">
+              <span>Product &amp; AI Design</span>
+              <p>Confirm Google design and prototyping motion with Partnerships.</p>
+            </div>
+            <div class="partner-stack-row">
+              <span>Data &amp; Infrastructure</span>
+              <p>BigQuery, Looker, Dataflow, Pub/Sub, AlloyDB, Cloud Spanner</p>
+            </div>
+            <div class="partner-stack-row">
+              <span>Security &amp; Compliance</span>
+              <p>Chronicle SIEM, Security Command Center, BeyondCorp, Mandiant</p>
+            </div>
+            <div class="partner-stack-row">
+              <span>Salesforce &amp; AI for GTM</span>
+              <p>Confirm Google Cloud GTM integrations with Partnerships.</p>
+            </div>
+            <div class="partner-stack-row">
+              <span>Quality Engineering</span>
+              <p>Cloud Monitoring, Cloud Logging, Cloud Trace, Cloud Build, Artifact Registry</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section partner-case-section reveal">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Joint case studies.</h2>
+          </div>
+          <div class="case-grid">
+            <a class="case-card case-card-feature" href="/work/public-sector-ai">
+              <div class="case-visual visual-retail" aria-hidden="true"></div>
+              <div>
+                <span class="case-number">01</span>
+                <p class="tagline">Public Sector · Google Cloud</p>
+                <h3>AI platform deployed for government operations on Vertex AI. Named Partner of the Year.</h3>
+                <p class="result">Outcome with number pending client approval.</p>
+              </div>
+            </a>
+            <a class="case-card" href="/work">
+              <div class="case-visual visual-sports" aria-hidden="true"></div>
+              <div>
+                <span class="case-number">02</span>
+                <p class="tagline">[PLACEHOLDER — Industry · Google Cloud]</p>
+                <h3>[PLACEHOLDER — Outcome with number — Sales Ops + client approval]</h3>
+                <p class="result">[Google Cloud badge · Link]</p>
+              </div>
+            </a>
+            <a class="case-card" href="/work">
+              <div class="case-visual visual-travel" aria-hidden="true"></div>
+              <div>
+                <span class="case-number">03</span>
+                <p class="tagline">[PLACEHOLDER — Industry · Google Cloud]</p>
+                <h3>[PLACEHOLDER — Outcome with number — Sales Ops + client approval]</h3>
+                <p class="result">[Google Cloud badge · Link]</p>
+              </div>
+            </a>
+          </div>
+          <div class="button-row centered section-exit-actions">
+            <a class="button button-glass" href="/work">
+              <span>See all case studies</span>
+              <i class="ri-arrow-right-line" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section partner-marketplace-section reveal" hidden>
+        <div class="section-inner partner-marketplace-card">
+          <p class="eyebrow">Google Cloud Marketplace</p>
+          <h2>Solutions in Google Cloud Marketplace.</h2>
+          <p>[Listing name], [What it does in one line] → [Link]</p>
+          <span>Confirm all listings with Partnerships.</span>
+        </div>
+      </section>
+
+      <section class="section partner-cosell-section reveal">
+        <div class="section-inner partner-cosell-layout">
+          <div class="partner-cosell-copy">
+            <p class="eyebrow">Co-sell motion</p>
+            <h2>Confirm co-sell status with Partnerships.</h2>
+            <p>
+              Typical engagement size and deal cycle to confirm with Partnerships.
+              Closing statement to confirm with Partnerships.
+            </p>
+          </div>
+          <aside class="partner-lead-card">
+            <span>Applaudo Google Cloud lead</span>
+            <img class="partner-lead-photo" src="../../assets/partners/google-cloud-cosell.svg" alt="Google Cloud Co-Sell Partner badge" width="120" height="120" />
+            <h3>Name placeholder</h3>
+            <p>Title · email · photo to confirm with Partnerships.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section services-final-cta partner-final-cta reveal">
+        <div class="section-inner narrow">
+          <div class="ai-spark-chip" aria-hidden="true">
+            <img src="../../assets/ui/ai-spark.svg" alt="" />
+          </div>
+          <h2>Bring us the Google Cloud engagement.</h2>
+          <p>Thirty minutes. We've built it before.</p>
+          <div class="button-row centered">
+            <a class="button button-red" href="/contact/start-a-partnership">
+              <span>Talk to an AI engineer</span>
+              <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../../assets/brand/applaudo.svg" alt="Applaudo" />
+          <p>Austin, TX · San Salvador, SS</p>
+        </div>
+        <div class="footer-columns">
+          <div>
+            <h2>Services</h2>
+            <a href="/services/ai-strategy-transformation">AI Strategy & Transformation</a>
+            <a href="/services/ai-build-deploy">AI Build & Deploy</a>
+            <a href="/services/ai-engineering">AI Engineering</a>
+            <a href="/services/product-ai-design">Product & AI Design</a>
+          </div>
+          <div>
+            <h2>Industries</h2>
+            <a href="/industries/retail-consumer">Retail & Consumer</a>
+            <a href="/industries/travel-hospitality">Travel & Hospitality</a>
+            <a href="/industries/sports-media-entertainment">Sports, Media & Entertainment</a>
+            <a href="/industries/financial-services">Financial Services</a>
+          </div>
+          <div>
+            <h2>Company</h2>
+            <a href="/about">About</a>
+            <a href="/careers">Careers</a>
+            <a href="/contact">Contact</a>
+            <a href="/about/press-recognition">Press</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-badges">
+        <span>Google Cloud</span><span>AWS</span><span>Microsoft</span><span>Salesforce</span>
+        <span>Mandiant</span><span>Fortinet</span><span>ISO 27001</span><span>IQNet</span>
+      </div>
+      <div class="footer-bottom">
+        <div class="socials" aria-label="Social links">
+          <a class="icon-button" href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a>
+          <a class="icon-button" href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a class="icon-button" href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+        </div>
+        <div class="legal-links">
+          <a href="/privacy-policy">Privacy policy</a>
+          <a href="/cookie-policy">Cookie policy</a>
+          <a href="/terms-of-service">Terms of service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+  </body>
+</html>
