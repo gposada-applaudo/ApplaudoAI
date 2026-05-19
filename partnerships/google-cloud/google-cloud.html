@@ -15,6 +15,68 @@
     />
     <link rel="stylesheet" href="../../styles.css" />
     <style>
+      /* ─── Award section ─── */
+      .partner-award-section {
+        background: oklch(99.8% 0.002 264) !important;
+        padding-top: clamp(40px, 4vw, 56px);
+        padding-bottom: clamp(40px, 4vw, 56px);
+      }
+
+      .partner-award-layout {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: clamp(28px, 3.5vw, 48px);
+        align-items: center;
+        max-width: 900px;
+      }
+
+      .partner-award-visual img {
+        width: clamp(176px, 19.4vw, 264px);
+        height: auto;
+        display: block;
+      }
+
+      .partner-award-copy {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .partner-award-copy h2 {
+        margin: 0 0 8px;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        line-height: 1.1;
+      }
+
+      .partner-award-subtitle {
+        margin: 0 0 28px;
+        font-size: var(--text-body-sm);
+        font-weight: var(--demi);
+        color: oklch(55% 0.2 264);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .partner-award-copy p:not(.partner-award-subtitle) {
+        max-width: 48ch;
+        margin: 0 0 40px;
+        color: oklch(42% 0.008 264);
+        line-height: 1.65;
+      }
+
+      .partner-award-copy .button-row {
+        margin: 0;
+      }
+
+      @media (max-width: 720px) {
+        .partner-award-layout {
+          grid-template-columns: 1fr;
+          max-width: 100%;
+        }
+        .partner-award-visual img {
+          width: clamp(140px, 42vw, 194px);
+        }
+      }
+
       /* ─── No blurs anywhere on this page ─── */
       .site-header {
         background: oklch(99.5% 0.003 25);
@@ -110,7 +172,12 @@
         line-height: 1.5;
       }
 
-      /* Status grid: neutral soft */
+      /* Status section: gray background */
+      .partner-status-section {
+        background: var(--soft);
+      }
+
+      /* Status grid items */
       .partner-status-item {
         background: var(--soft);
       }
@@ -235,6 +302,25 @@
               <span class="partner-badge-subtitle">Partner of the Year 2026 · LATAM</span>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section class="section partner-award-section reveal">
+        <div class="section-inner partner-award-layout">
+          <div class="partner-award-visual">
+            <img src="../../assets/awards/google-cloud-award.png" alt="Google Cloud Partner of the Year 2026 — Public Sector LATAM award" />
+          </div>
+          <div class="partner-award-copy">
+            <h2>Google Cloud Partner of the Year 2026</h2>
+            <p class="partner-award-subtitle">Public Sector LATAM</p>
+            <p>We were named Google Cloud Partner of the Year for Public Sector in Latin America. The work earned it.</p>
+            <div class="button-row">
+              <a class="button button-red" href="/work/public-sector-ai">
+                <span>Read the story</span>
+                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
