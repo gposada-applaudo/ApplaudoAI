@@ -264,7 +264,7 @@ async function loadNav() {
     return;
   }
   try {
-    const res = await fetch("/components/nav.html");
+    const res = await fetch("components/nav.html");
     const html = await res.text();
     placeholder.outerHTML = html;
   } catch (e) {
