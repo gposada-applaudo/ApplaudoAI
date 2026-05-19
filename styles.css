@@ -83,7 +83,7 @@ img {
   top: 18px;
   left: 50%;
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto;
   gap: 22px;
   align-items: center;
   width: min(1280px, calc(100% - 32px));
@@ -1077,7 +1077,7 @@ p {
 
 .button-small {
   min-height: 44px;
-  padding: 0 18px;
+  padding: 10px;
   font-size: 14px;
 }
 
