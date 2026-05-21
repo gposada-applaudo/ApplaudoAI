@@ -4246,3 +4246,311 @@ p {
     line-height: 1.05;
   }
 }
+
+/* ===== Partnerships page ===== */
+
+.partnerships-page .section:nth-of-type(even) {
+  background: var(--soft);
+}
+
+/* Hero */
+.partnerships-hero {
+  display: grid;
+  align-items: center;
+  min-height: clamp(680px, 82vh, 840px);
+  padding-top: 128px;
+  padding-bottom: clamp(72px, 8vw, 108px);
+  background-image: url("assets/photos/PartnersHero.jpg");
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.partnerships-hero .section-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.partnerships-hero h1 {
+  max-width: 780px;
+}
+
+.partnerships-hero .hero-subhead {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+
+/* The argument */
+.partnerships-argument-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+
+.partnerships-argument-grid h2 {
+  margin: 0;
+  position: sticky;
+  top: 32px;
+}
+
+.partnerships-argument-grid > p {
+  margin: 0;
+  color: rgba(18, 18, 18, 0.68);
+  font-size: var(--text-body);
+  line-height: 1.72;
+}
+
+/* Partner cards */
+.partner-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(28px, 4vw, 52px);
+  margin-top: clamp(56px, 7vw, 88px);
+}
+
+.partner-card {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 3vw, 36px) 0 clamp(28px, 3vw, 36px);
+  border: none;
+  border-top: 2px solid rgba(18, 18, 18, 0.1);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--black);
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+
+.partner-card:hover {
+  opacity: 0.78;
+  transform: none;
+  box-shadow: none;
+}
+
+.partner-card:hover .partner-card-cta {
+  gap: 9px;
+}
+
+.partner-card-aws       { border-top-color: var(--aws-orange); }
+.partner-card-microsoft { border-top-color: #0078D4; }
+.partner-card-gcp       { border-top-color: #4285F4; }
+
+.partner-card-logo {
+  height: 104px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.partner-card-logo img {
+  max-height: 104px;
+  width: auto;
+  max-width: 400px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.partner-card h3 {
+  margin: 0 0 14px;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  line-height: 1.08;
+  font-weight: var(--demi);
+}
+
+.partner-card > p {
+  margin: 0;
+  color: rgba(18, 18, 18, 0.64);
+  font-size: var(--text-body-sm);
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+.partner-card-proof {
+  margin-top: 28px;
+  padding: 0;
+  border: none;
+  color: rgba(18, 18, 18, 0.38);
+  font-size: var(--text-label);
+  font-weight: var(--demi);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.partner-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--red);
+  font-size: var(--text-ui);
+  font-weight: var(--demi);
+  margin-top: 14px;
+  transition: gap 200ms ease;
+}
+
+/* What it means */
+.partnerships-means-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: clamp(44px, 6vw, 72px);
+}
+
+.partnerships-means-grid article {
+  padding: 26px 0 10px;
+  border-top: 1px solid rgba(18, 18, 18, 0.12);
+}
+
+.partnerships-means-grid span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--black);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  line-height: 1.1;
+  font-weight: var(--demi);
+}
+
+.partnerships-means-grid p {
+  margin: 0;
+  color: rgba(18, 18, 18, 0.68);
+  font-size: var(--text-body-sm);
+  line-height: 1.62;
+}
+
+/* Proof bar */
+.proof-bar-section {
+  padding: clamp(52px, 6vw, 80px) 24px;
+  background: var(--soft);
+}
+
+.proof-bar-label {
+  margin: 0 0 40px;
+  text-align: center;
+  color: rgba(18, 18, 18, 0.46);
+  font-size: var(--text-label);
+  font-weight: var(--demi);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.proof-bar-logos {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.proof-bar-item {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 20px clamp(28px, 5vw, 60px);
+  border-right: 1px solid rgba(18, 18, 18, 0.1);
+  text-align: center;
+}
+
+.proof-bar-item:last-child {
+  border-right: none;
+}
+
+.proof-bar-item img {
+  height: 140px;
+  width: auto;
+}
+
+.proof-bar-item span {
+  color: rgba(18, 18, 18, 0.46);
+  font-size: var(--text-label);
+  font-weight: var(--demi);
+  letter-spacing: 0.04em;
+  max-width: 200px;
+  line-height: 1.4;
+}
+
+.proof-bar-item-logos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.proof-bar-item--multi img {
+  height: 140px;
+}
+
+/* Recognition */
+.partnerships-recognition-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  gap: clamp(44px, 7vw, 96px);
+  align-items: center;
+}
+
+.partnerships-recognition-layout .award-feature {
+  margin: 0;
+}
+
+.partnerships-recognition-copy {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.partnerships-recognition-copy h2 {
+  margin: 0;
+}
+
+.partnerships-recognition-copy p {
+  margin: 0;
+  color: rgba(18, 18, 18, 0.68);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .partnerships-argument-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .partnerships-argument-grid h2 {
+    position: static;
+  }
+
+  .partner-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .partner-card {
+    border-top-width: 2px;
+    border-bottom: 1px solid rgba(18, 18, 18, 0.08);
+  }
+
+  .partnerships-means-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-bar-logos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .proof-bar-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(18, 18, 18, 0.1);
+    width: 100%;
+    padding: 24px 0;
+  }
+
+  .proof-bar-item:last-child {
+    border-bottom: none;
+  }
+
+  .partnerships-recognition-layout {
+    grid-template-columns: 1fr;
+  }
+}

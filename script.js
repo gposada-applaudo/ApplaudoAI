@@ -217,7 +217,7 @@ function initNav() {
     });
 
     trigger?.addEventListener("click", (event) => {
-      if (desktopQuery.matches && trigger.matches("a[href]")) return;
+      if (trigger.matches("a[href]")) return;
       event.preventDefault();
       updateMenuAnchor(item);
       const shouldOpen = !item.classList.contains("is-open");
@@ -264,9 +264,25 @@ async function loadNav() {
     return;
   }
   try {
-    const res = await fetch("components/nav.html");
+    const scriptSrc = document.querySelector('script[src*="script.js"]')?.src || "";
+    const root = scriptSrc ? scriptSrc.replace(/script\.js.*$/, "") : "";
+    const res = await fetch(root + "components/nav.html");
     const html = await res.text();
-    placeholder.outerHTML = html;
+
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+
+    const isRelative = (url) => url && !url.match(/^(https?:|#|mailto:|tel:|\/)/);
+    temp.querySelectorAll("a[href]").forEach(el => {
+      const href = el.getAttribute("href");
+      if (isRelative(href)) el.setAttribute("href", root + href);
+    });
+    temp.querySelectorAll("img[src]").forEach(el => {
+      const src = el.getAttribute("src");
+      if (isRelative(src)) el.setAttribute("src", root + src);
+    });
+
+    placeholder.replaceWith(temp.firstElementChild);
   } catch (e) {
     console.warn("Could not load nav component:", e);
   }
