@@ -456,7 +456,7 @@ img {
 }
 
 .hero {
-  min-height: 100svh;
+  min-height: min(820px, 82svh);
   display: grid;
   align-items: center;
   padding-top: clamp(104px, 13vh, 128px);
@@ -696,6 +696,7 @@ img {
   min-width: 40px;
   height: 40px;
   padding: 0;
+  margin-bottom: 24px;
   border: 1px solid #f7f7f7;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.68);
@@ -2200,10 +2201,6 @@ p {
   min-width: 0;
 }
 
-.services-hero-copy .ai-spark-chip {
-  margin-bottom: 24px;
-}
-
 .services-hero-copy h1 {
   max-width: 760px;
   text-transform: none;
@@ -3016,8 +3013,12 @@ p {
   padding-top: 0;
 }
 
+.partner-stack-copy .ai-spark-chip,
+.partnerships-recognition-copy .ai-spark-chip {
+  margin-bottom: 0;
+}
+
 .partner-stack-copy .ai-spark-chip {
-  margin: 0;
   transform: translateY(-6px);
 }
 
