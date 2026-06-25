@@ -357,6 +357,20 @@ if (industryLab) {
   });
 }
 
+// Hero background videos (services + partner pages) use the .services-hero-video class.
+// Some source files carry an audio track, which the browser can refuse to autoplay
+// even when the markup says muted — so force muted playback explicitly here.
+document.querySelectorAll(".services-hero-video").forEach((video) => {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.setAttribute("muted", "");
+  if (reducedMotionQuery.matches) return;
+  const start = () => video.play().catch(() => {});
+  start();
+  video.addEventListener("loadeddata", start, { once: true });
+  video.addEventListener("canplay", start, { once: true });
+});
+
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
