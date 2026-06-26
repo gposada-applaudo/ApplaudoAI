@@ -372,6 +372,197 @@ document.querySelectorAll(".services-hero-video").forEach((video) => {
 });
 
 
+// Customer Stories (work page): multi-select Industry + Service checkbox
+// facets, live search, and pagination over the full story library.
+const storyGrid = document.querySelector("[data-story-grid]");
+
+if (storyGrid) {
+  const cards = Array.from(storyGrid.querySelectorAll(".story-card"));
+  const searchInput = document.querySelector("[data-story-search]");
+  const checkboxes = Array.from(document.querySelectorAll(".story-sidebar [data-facet]"));
+  const clearButton = document.querySelector("[data-story-clear]");
+  const emptyState = document.querySelector("[data-story-empty]");
+  const pager = document.querySelector("[data-story-pager]");
+  const section = storyGrid.closest(".work-customers-section");
+  const PER_PAGE = 8;
+  let currentPage = 1;
+
+  const selectedValues = (facet) =>
+    checkboxes.filter((box) => box.dataset.facet === facet && box.checked).map((box) => box.value);
+
+  const getMatches = () => {
+    const query = (searchInput?.value || "").trim().toLowerCase();
+    const industries = selectedValues("industry");
+    const services = selectedValues("service");
+
+    return cards.filter((card) => {
+      const cardIndustries = (card.dataset.industries || "").split(" ");
+      const cardServices = (card.dataset.services || "").split(" ");
+      // OR within a facet group, AND across the two groups, AND the search.
+      const okIndustry = industries.length === 0 || industries.some((value) => cardIndustries.includes(value));
+      const okService = services.length === 0 || services.some((value) => cardServices.includes(value));
+      const okQuery = !query || card.textContent.toLowerCase().includes(query);
+      return okIndustry && okService && okQuery;
+    });
+  };
+
+  const updateClearButton = () => {
+    if (!clearButton) return;
+    const hasFilters = checkboxes.some((box) => box.checked) || (searchInput?.value || "").trim() !== "";
+    clearButton.hidden = !hasFilters;
+  };
+
+  const goToPage = (page, scroll) => {
+    currentPage = page;
+    render();
+    if (scroll && section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const buildPager = (totalPages) => {
+    pager.innerHTML = "";
+    if (totalPages <= 1) return;
+
+    const addButton = (label, page, { active, disabled, ariaLabel } = {}) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "story-page-btn" + (active ? " is-active" : "");
+      button.innerHTML = label;
+      if (disabled) button.disabled = true;
+      if (ariaLabel) button.setAttribute("aria-label", ariaLabel);
+      if (active) button.setAttribute("aria-current", "page");
+      if (!disabled) button.addEventListener("click", () => goToPage(page, true));
+      pager.appendChild(button);
+    };
+
+    const addEllipsis = () => {
+      const span = document.createElement("span");
+      span.className = "story-page-ellipsis";
+      span.textContent = "…";
+      pager.appendChild(span);
+    };
+
+    addButton('<i class="ri-arrow-left-s-line" aria-hidden="true"></i>', currentPage - 1, {
+      disabled: currentPage === 1,
+      ariaLabel: "Previous page"
+    });
+
+    const pages = [];
+    for (let page = 1; page <= totalPages; page += 1) {
+      if (page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1) {
+        pages.push(page);
+      } else if (pages[pages.length - 1] !== "ellipsis") {
+        pages.push("ellipsis");
+      }
+    }
+    pages.forEach((page) =>
+      page === "ellipsis" ? addEllipsis() : addButton(String(page), page, { active: page === currentPage })
+    );
+
+    addButton('<i class="ri-arrow-right-s-line" aria-hidden="true"></i>', currentPage + 1, {
+      disabled: currentPage === totalPages,
+      ariaLabel: "Next page"
+    });
+  };
+
+  const render = () => {
+    const matches = getMatches();
+    const totalPages = Math.max(1, Math.ceil(matches.length / PER_PAGE));
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * PER_PAGE;
+    const pageCards = new Set(matches.slice(start, start + PER_PAGE));
+    cards.forEach((card) => card.classList.toggle("is-hidden", !pageCards.has(card)));
+
+    if (emptyState) emptyState.hidden = matches.length > 0;
+    buildPager(totalPages);
+  };
+
+  // Accordion groups: expand/collapse + per-group selected-count badge
+  const accordionGroups = Array.from(document.querySelectorAll(".story-sidebar [data-acc-group]"));
+
+  accordionGroups.forEach((group) => {
+    const header = group.querySelector("[data-acc-toggle]");
+    header?.addEventListener("click", () => {
+      const isOpen = group.classList.toggle("is-open");
+      header.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
+
+  const updateGroupBadges = () => {
+    accordionGroups.forEach((group) => {
+      const badge = group.querySelector("[data-acc-count]");
+      const count = group.querySelectorAll("[data-facet]:checked").length;
+      if (badge) {
+        badge.textContent = String(count);
+        badge.hidden = count === 0;
+      }
+    });
+  };
+
+  const resetAndRender = () => {
+    updateClearButton();
+    updateGroupBadges();
+    goToPage(1, false);
+  };
+
+  searchInput?.addEventListener("input", resetAndRender);
+  checkboxes.forEach((box) => box.addEventListener("change", resetAndRender));
+  clearButton?.addEventListener("click", () => {
+    checkboxes.forEach((box) => (box.checked = false));
+    if (searchInput) searchInput.value = "";
+    resetAndRender();
+  });
+
+  updateClearButton();
+  updateGroupBadges();
+  render();
+}
+
+// Testimonials (work page): stacked-card carousel, mouse-cycled, infinite loop.
+const testimonialStack = document.querySelector("[data-testimonial-stack]");
+
+if (testimonialStack) {
+  const cards = Array.from(testimonialStack.querySelectorAll(".testimonial-card"));
+  const dotsWrap = document.querySelector("[data-testimonial-dots]");
+  const prevButton = document.querySelector("[data-testimonial-prev]");
+  const nextButton = document.querySelector("[data-testimonial-next]");
+  const count = cards.length;
+  let front = 0;
+
+  const goTo = (index) => {
+    front = ((index % count) + count) % count;
+    cards.forEach((card, i) => {
+      card.dataset.pos = String((i - front + count) % count);
+    });
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === front));
+  };
+
+  // Build the dot indicators
+  const dots = cards.map((_, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "testimonial-dot";
+    dot.setAttribute("aria-label", `Testimonial ${index + 1}`);
+    dot.addEventListener("click", (event) => {
+      event.stopPropagation();
+      goTo(index);
+    });
+    dotsWrap?.appendChild(dot);
+    return dot;
+  });
+
+  nextButton?.addEventListener("click", () => goTo(front + 1));
+  prevButton?.addEventListener("click", () => goTo(front - 1));
+  // Click the deck to cycle: the left (previous) card steps back, anything else advances.
+  testimonialStack.addEventListener("click", (event) => {
+    const card = event.target.closest(".testimonial-card");
+    if (card && Number(card.dataset.pos) === count - 1) goTo(front - 1);
+    else goTo(front + 1);
+  });
+
+  goTo(0);
+}
+
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
