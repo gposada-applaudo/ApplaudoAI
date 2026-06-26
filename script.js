@@ -553,10 +553,13 @@ if (testimonialStack) {
 
   nextButton?.addEventListener("click", () => goTo(front + 1));
   prevButton?.addEventListener("click", () => goTo(front - 1));
-  // Click the deck to cycle: the left (previous) card steps back, anything else advances.
+  // Click the deck: right-side cards (pos < count/2) advance, left-side cards go back.
   testimonialStack.addEventListener("click", (event) => {
     const card = event.target.closest(".testimonial-card");
-    if (card && Number(card.dataset.pos) === count - 1) goTo(front - 1);
+    if (!card) return;
+    const pos = Number(card.dataset.pos);
+    if (pos === 0) return;
+    if (pos > count / 2) goTo(front - 1);
     else goTo(front + 1);
   });
 
