@@ -425,7 +425,7 @@ img {
 
 .section {
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   padding: 140px 24px;
 }
 
@@ -1114,8 +1114,8 @@ p {
 
 .stats-intro {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 0.72fr);
-  gap: clamp(48px, 8vw, 132px);
+  grid-template-columns: 1fr;
+  gap: 16px;
   align-items: start;
   margin-bottom: 46px;
 }
@@ -1130,8 +1130,22 @@ p {
 }
 
 .stats-intro p {
-  max-width: 420px;
+  max-width: 560px;
   color: var(--muted);
+}
+
+.stacked-heading {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 34px;
+}
+
+.stacked-heading h2,
+.stacked-heading p {
+  margin-bottom: 0;
+  max-width: 760px;
 }
 
 .stats-row {
@@ -2703,6 +2717,7 @@ p {
 .services-proof-copy {
   position: sticky;
   top: 128px;
+  align-self: start;
 }
 
 .proof-copy h2,

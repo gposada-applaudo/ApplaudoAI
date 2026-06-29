@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Applaudo — Component Gallery</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <style>
       /* ── Kitchen sink chrome ─────────────────────────────────────────── */
       .ks-layout {
         display: grid;
-        grid-template-columns: 220px minmax(0, 1fr);
+        grid-template-columns: 232px minmax(0, 1fr);
         min-height: 100vh;
       }
 
@@ -30,11 +31,19 @@
 
       .ks-sidebar-title {
         display: block;
-        margin-bottom: 20px;
+        margin-bottom: 6px;
         font-size: 0.75rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--muted);
+      }
+
+      .ks-sidebar-sub {
+        display: block;
+        margin-bottom: 20px;
+        font-size: 0.6875rem;
+        font-weight: 400;
+        color: rgba(18, 18, 18, 0.4);
       }
 
       .ks-sidebar nav {
@@ -46,7 +55,7 @@
       .ks-sidebar a {
         display: flex;
         align-items: center;
-        min-height: 32px;
+        min-height: 30px;
         padding: 0 10px;
         border-radius: 8px;
         color: var(--muted);
@@ -68,7 +77,7 @@
         font-size: 0.6875rem;
         letter-spacing: 0.07em;
         text-transform: uppercase;
-        color: rgba(18,18,18,0.36);
+        color: rgba(18, 18, 18, 0.36);
       }
 
       .ks-main {
@@ -88,7 +97,8 @@
       .ks-section-title {
         display: flex;
         align-items: baseline;
-        gap: 16px;
+        flex-wrap: wrap;
+        gap: 8px 16px;
         margin-bottom: 40px;
         padding-bottom: 16px;
         border-bottom: 1px solid var(--line);
@@ -106,6 +116,23 @@
         color: var(--muted);
         font-weight: 400;
         font-family: "SF Mono", "Fira Code", monospace;
+      }
+
+      .ks-note {
+        color: var(--muted);
+        font-size: var(--text-body);
+        line-height: 1.5;
+        max-width: 70ch;
+        margin: 0 0 28px;
+      }
+
+      .ks-note code,
+      .ks-inline-code {
+        font-family: "SF Mono", "Fira Code", monospace;
+        font-size: 0.8125rem;
+        background: var(--soft);
+        padding: 2px 6px;
+        border-radius: 4px;
       }
 
       .ks-row {
@@ -140,10 +167,38 @@
         margin: 32px 0;
       }
 
+      /* Live specimen frame — tames full-bleed section padding so real page
+         sections render compactly inside the gallery while keeping their
+         own backgrounds, ::before glows, and internal layout. */
+      .ks-stage {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .ks-stage .section {
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+      .ks-stage .hero {
+        min-height: auto;
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+      .ks-stage .site-footer {
+        margin: 0;
+      }
+
+      /* Light backdrop so glass / backdrop-filter surfaces read correctly */
+      .ks-light-canvas {
+        background: linear-gradient(135deg, #e9e9ec, #f2f2f4);
+        padding: 40px;
+        border-radius: 20px;
+      }
+
       /* ── Color swatches ───────────────────────────────────────────────── */
       .ks-swatch-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 14px;
       }
 
@@ -156,7 +211,7 @@
       .ks-swatch-block {
         height: 72px;
         border-radius: 12px;
-        border: 1px solid rgba(18,18,18,0.08);
+        border: 1px solid rgba(18, 18, 18, 0.08);
       }
 
       .ks-swatch-name {
@@ -172,6 +227,14 @@
         color: var(--muted);
       }
 
+      .ks-subgroup-label {
+        display: block;
+        margin: 36px 0 16px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--black);
+      }
+
       /* ── Type specimens ───────────────────────────────────────────────── */
       .ks-type-table {
         display: grid;
@@ -183,7 +246,7 @@
 
       .ks-type-row {
         display: grid;
-        grid-template-columns: 140px minmax(0, 1fr) 200px;
+        grid-template-columns: 150px minmax(0, 1fr) 200px;
         align-items: center;
         gap: 24px;
         padding: 20px 24px;
@@ -269,7 +332,7 @@
         color: var(--muted);
       }
 
-      .ks-motion-row .ks-note {
+      .ks-motion-row .ks-motion-use {
         font-size: 0.8125rem;
         color: var(--muted);
       }
@@ -277,6 +340,59 @@
       .ks-motion-name {
         font-weight: 600;
         font-size: 0.8125rem;
+      }
+
+      /* ── Spec table (key/value reference under a component) ────────────── */
+      .ks-spec {
+        display: grid;
+        gap: 10px;
+        padding: 16px 20px;
+        background: var(--soft);
+        border-radius: 12px;
+        font-size: 0.8125rem;
+        line-height: 1.5;
+      }
+      .ks-spec div strong { color: var(--black); }
+      .ks-spec code {
+        font-family: "SF Mono", "Fira Code", monospace;
+        font-size: 0.75rem;
+      }
+
+      /* Static nav pill specimen */
+      .ks-nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 12px 14px 12px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.74);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 18px 48px rgba(18, 18, 18, 0.08);
+        backdrop-filter: blur(22px) saturate(1.25);
+        -webkit-backdrop-filter: blur(22px) saturate(1.25);
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+      }
+      .ks-nav-pill img { width: 124px; margin-right: 6px; }
+      .ks-nav-pill .ks-nl {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        min-height: 40px;
+        padding: 0 11px;
+        border-radius: 999px;
+        color: rgba(18, 18, 18, 0.72);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .ks-nav-pill .ks-nl i { font-size: 1rem; opacity: 0.6; }
+      .ks-nav-pill .ks-nl.is-active {
+        color: #121212;
+        background: rgba(18, 18, 18, 0.04);
+        box-shadow: inset 0 0 0 1px rgba(18, 18, 18, 0.08);
       }
     </style>
   </head>
@@ -286,26 +402,45 @@
       <!-- ── Sidebar nav ── -->
       <aside class="ks-sidebar">
         <span class="ks-sidebar-title">Component Gallery</span>
+        <span class="ks-sidebar-sub">Live reference for styles.css · synced with the current site</span>
         <nav>
           <span class="ks-nav-group">Foundation</span>
           <a href="#colors">Colors</a>
           <a href="#typography">Typography</a>
-          <a href="#spacing">Spacing &amp; Layout</a>
+          <a href="#spacing">Spacing &amp; Geometry</a>
           <a href="#elevation">Elevation</a>
           <a href="#motion">Motion</a>
 
-          <span class="ks-nav-group">Components</span>
+          <span class="ks-nav-group">Core Components</span>
           <a href="#buttons">Buttons</a>
           <a href="#navigation">Navigation</a>
-          <a href="#glass-card">Glass Card</a>
-          <a href="#case-card">Case Card</a>
-          <a href="#industry-tile">Industry Tile</a>
-          <a href="#stats">Stats Row</a>
-          <a href="#section-heading">Section Heading</a>
+          <a href="#footer">Footer</a>
           <a href="#labels">Labels &amp; Tags</a>
+          <a href="#glass-card">Glass Card</a>
 
-          <span class="ks-nav-group">Patterns</span>
-          <a href="#cta-pair">CTA Pair</a>
+          <span class="ks-nav-group">Cards &amp; Tiles</span>
+          <a href="#case-card">Case Card</a>
+          <a href="#story-card">Story Card</a>
+          <a href="#industry-tile">Industry Tile</a>
+          <a href="#industry-panel">Industry Panel</a>
+          <a href="#industry-row">Industry Row</a>
+          <a href="#engagement">Engagement Card</a>
+          <a href="#next-step">Next-Step Card</a>
+          <a href="#reason">Reason Item</a>
+
+          <span class="ks-nav-group">Composite</span>
+          <a href="#stats">Stats Row</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#story-browser">Story Browser</a>
+          <a href="#logo-cloud">Logo Cloud</a>
+          <a href="#recognition">Recognition</a>
+
+          <span class="ks-nav-group">Sections &amp; Patterns</span>
+          <a href="#section-system">Section System</a>
+          <a href="#hero">Hero</a>
+          <a href="#ai-stack">AI Stack</a>
+          <a href="#value-prop">Value Prop</a>
+          <a href="#cta">CTA Section</a>
           <a href="#reveal">Scroll Reveal</a>
         </nav>
       </aside>
@@ -370,6 +505,50 @@
               <span class="ks-swatch-meta">Borders, structural dividers</span>
             </div>
           </div>
+
+          <span class="ks-subgroup-label">Applaudo secondary palette</span>
+          <p class="ks-note">
+            Accent colors from Applaudo's brand system. Use these when a surface or component needs
+            a color match — never reach for third-party brand colors on core pages.
+          </p>
+          <div class="ks-swatch-grid">
+            <div class="ks-swatch">
+              <div class="ks-swatch-block" style="background: #AB5EF7;"></div>
+              <span class="ks-swatch-name">Purple</span>
+              <span class="ks-swatch-meta">#AB5EF7</span>
+              <span class="ks-swatch-meta">Accent</span>
+            </div>
+            <div class="ks-swatch">
+              <div class="ks-swatch-block" style="background: #F03875;"></div>
+              <span class="ks-swatch-name">Pink</span>
+              <span class="ks-swatch-meta">#F03875</span>
+              <span class="ks-swatch-meta">Accent</span>
+            </div>
+            <div class="ks-swatch">
+              <div class="ks-swatch-block" style="background: #3399FF;"></div>
+              <span class="ks-swatch-name">Blue</span>
+              <span class="ks-swatch-meta">#3399FF</span>
+              <span class="ks-swatch-meta">Accent</span>
+            </div>
+            <div class="ks-swatch">
+              <div class="ks-swatch-block" style="background: #40CF63;"></div>
+              <span class="ks-swatch-name">Green</span>
+              <span class="ks-swatch-meta">#40CF63</span>
+              <span class="ks-swatch-meta">Accent</span>
+            </div>
+            <div class="ks-swatch">
+              <div class="ks-swatch-block" style="background: #FF9124;"></div>
+              <span class="ks-swatch-name">Orange</span>
+              <span class="ks-swatch-meta">#FF9124</span>
+              <span class="ks-swatch-meta">Accent</span>
+            </div>
+            <div class="ks-swatch">
+              <div class="ks-swatch-block" style="background: #FFCC00;"></div>
+              <span class="ks-swatch-name">Yellow</span>
+              <span class="ks-swatch-meta">#FFCC00</span>
+              <span class="ks-swatch-meta">Accent</span>
+            </div>
+          </div>
         </section>
 
         <!-- ─────────────────── TYPOGRAPHY ─────────────────── -->
@@ -397,8 +576,18 @@
                 clamp(2.125rem, 4vw, 3.75rem)<br>
                 weight 600 · lh 1.04
               </div>
-              <h2 style="margin:0; font-size: var(--text-title-md); line-height: 1.04; font-weight: 600;">Section heading</h2>
-              <div class="ks-type-meta">Section h2 headings.</div>
+              <h2 style="margin:0; font-size: var(--text-title-md); line-height: 1.04; font-weight: 600;">Big section heading</h2>
+              <div class="ks-type-meta">Hero-adjacent and large section h2.</div>
+            </div>
+            <div class="ks-type-row">
+              <div class="ks-type-meta">
+                <strong>Section Title</strong>
+                --text-section-title<br>
+                clamp(1.75rem, 2.8vw, 2.5rem)<br>
+                weight 600 · lh ~1.1
+              </div>
+              <h2 style="margin:0; font-size: var(--text-section-title); line-height: 1.1; font-weight: 600;">Standard section heading</h2>
+              <div class="ks-type-meta">Default h2 for every section below the hero. Used across all pages.</div>
             </div>
             <div class="ks-type-row">
               <div class="ks-type-meta">
@@ -408,7 +597,7 @@
                 weight 600 · lh 1.04
               </div>
               <p style="margin:0; font-size: var(--text-feature); line-height: 1.04; font-weight: 600;">Case study headline</p>
-              <div class="ks-type-meta">Pull-quotes, case study h3.</div>
+              <div class="ks-type-meta">Pull-quotes, feature case card h3.</div>
             </div>
             <div class="ks-type-row">
               <div class="ks-type-meta">
@@ -430,6 +619,15 @@
             </div>
             <div class="ks-type-row">
               <div class="ks-type-meta">
+                <strong>Body Small</strong>
+                --text-body-sm<br>
+                1rem · weight 400 · lh 1.5
+              </div>
+              <p style="margin:0; font-size: var(--text-body-sm); line-height: 1.5; font-weight: 400; max-width: 60ch; color: var(--muted);">Compact body for dense contexts — captions, card sublines, taglines.</p>
+              <div class="ks-type-meta">Compact body contexts.</div>
+            </div>
+            <div class="ks-type-row">
+              <div class="ks-type-meta">
                 <strong>UI</strong>
                 --text-ui<br>
                 0.875rem · weight 600 · lh 1
@@ -444,17 +642,17 @@
                 0.8125rem · weight 600<br>
                 letter-spacing 0.04em
               </div>
-              <p style="margin:0; font-size: var(--text-label); line-height: 1; font-weight: 600; letter-spacing: 0.04em;">EYEBROW KICKER · LABEL</p>
-              <div class="ks-type-meta">Eyebrows, chip labels,<br>meta text.</div>
+              <p style="margin:0; font-size: var(--text-label); line-height: 1; font-weight: 600; letter-spacing: 0.04em;">Eyebrow kicker · label</p>
+              <div class="ks-type-meta">Eyebrows, chip labels,<br>meta text. No uppercase.</div>
             </div>
           </div>
         </section>
 
-        <!-- ─────────────────── SPACING ─────────────────── -->
+        <!-- ─────────────────── SPACING & GEOMETRY ─────────────────── -->
         <section class="ks-section" id="spacing">
           <div class="ks-section-title">
-            <h2>Spacing &amp; Layout</h2>
-            <span class="ks-anchor">Named scale · max container 1280px</span>
+            <h2>Spacing &amp; Geometry</h2>
+            <span class="ks-anchor">Named scale · section container min(1180px, 100%)</span>
           </div>
 
           <div class="ks-row" style="align-items: flex-end; gap: 24px;">
@@ -482,39 +680,69 @@
 
           <div class="ks-divider"></div>
 
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <span class="ks-subgroup-label">Border radius tokens</span>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
             <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
-              <span class="ks-label">Border radius: pill</span>
+              <span class="ks-label">pill · 999px</span>
               <div style="height: 44px; background: var(--black); border-radius: 999px;"></div>
             </div>
             <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
-              <span class="ks-label">Border radius: surface · 32px</span>
+              <span class="ks-label">--radius / --radius-xl · 32px</span>
               <div style="height: 80px; background: var(--black); border-radius: 32px;"></div>
             </div>
             <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
-              <span class="ks-label">Border radius: item · 22px</span>
-              <div style="height: 80px; background: var(--black); border-radius: 22px;"></div>
+              <span class="ks-label">--radius-sm · 18px</span>
+              <div style="height: 80px; background: var(--black); border-radius: 18px;"></div>
+            </div>
+            <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
+              <span class="ks-label">--radius-xs · 6px</span>
+              <div style="height: 80px; background: var(--black); border-radius: 6px;"></div>
             </div>
           </div>
 
           <div class="ks-divider"></div>
 
+          <span class="ks-subgroup-label">Section column systems</span>
+          <p class="ks-note">
+            Shared grid-template tokens keep every "heading | body" and "label | panel" section aligned to the
+            same column widths across pages.
+          </p>
+          <div style="display: grid; gap: 12px;">
+            <div>
+              <span class="ks-label">--section-header-cols · ~42% / ~58% · gap clamp(40px, 6vw, 96px)</span>
+              <div style="display: grid; grid-template-columns: var(--section-header-cols); gap: var(--section-header-gap);">
+                <div style="height: 52px; background: var(--black); border-radius: 8px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.75rem; font-weight:600;">heading 0.42fr</div>
+                <div style="height: 52px; background: rgba(18,18,18,0.12); border-radius: 8px; display:flex; align-items:center; justify-content:center; color:var(--black); font-size:0.75rem; font-weight:600;">body 0.58fr</div>
+              </div>
+            </div>
+            <div>
+              <span class="ks-label">--section-panel-cols · 0.4fr / 1fr · gap clamp(32px, 5vw, 72px) · partner detail pages</span>
+              <div style="display: grid; grid-template-columns: var(--section-panel-cols); gap: var(--section-panel-gap);">
+                <div style="height: 52px; background: var(--black); border-radius: 8px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.75rem; font-weight:600;">label 0.4fr</div>
+                <div style="height: 52px; background: rgba(18,18,18,0.12); border-radius: 8px; display:flex; align-items:center; justify-content:center; color:var(--black); font-size:0.75rem; font-weight:600;">content panel 1fr</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ks-divider"></div>
+
+          <span class="ks-subgroup-label">Responsive breakpoints</span>
           <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
             <div style="padding: 14px; border: 1px solid var(--line); border-radius: 8px;">
               <span class="ks-label">mobile</span>
               <span style="font-size: 0.875rem; font-weight: 600;">≤ 640px</span>
             </div>
             <div style="padding: 14px; border: 1px solid var(--line); border-radius: 8px;">
-              <span class="ks-label">tablet</span>
-              <span style="font-size: 0.875rem; font-weight: 600;">≤ 768px</span>
+              <span class="ks-label">tablet / nav collapse</span>
+              <span style="font-size: 0.875rem; font-weight: 600;">≤ 980px</span>
             </div>
             <div style="padding: 14px; border: 1px solid var(--line); border-radius: 8px;">
               <span class="ks-label">desktop</span>
-              <span style="font-size: 0.875rem; font-weight: 600;">≤ 1024px</span>
+              <span style="font-size: 0.875rem; font-weight: 600;">≥ 981px</span>
             </div>
             <div style="padding: 14px; border: 1px solid var(--line); border-radius: 8px;">
-              <span class="ks-label">wide · max container</span>
-              <span style="font-size: 0.875rem; font-weight: 600;">1280px</span>
+              <span class="ks-label">wide · section container</span>
+              <span style="font-size: 0.875rem; font-weight: 600;">1180px</span>
             </div>
           </div>
         </section>
@@ -568,32 +796,37 @@
             <div class="ks-motion-row">
               <span class="ks-motion-name">Exit Ease</span>
               <span class="ks-mono">cubic-bezier(0.22, 1, 0.36, 1)</span>
-              <span class="ks-note">UI transitions, menu opens, card hovers, button lifts</span>
+              <span class="ks-motion-use">UI transitions, menu opens, card hovers, button lifts</span>
             </div>
             <div class="ks-motion-row">
               <span class="ks-motion-name">State Ease</span>
               <span class="ks-mono">ease</span>
-              <span class="ks-note">Short color/opacity/background state changes</span>
+              <span class="ks-motion-use">Short color/opacity/background state changes</span>
             </div>
             <div class="ks-motion-row">
               <span class="ks-motion-name">Fast · 160ms</span>
               <span class="ks-mono">160ms ease</span>
-              <span class="ks-note">Color, border transitions</span>
+              <span class="ks-motion-use">Color, border transitions</span>
             </div>
             <div class="ks-motion-row">
               <span class="ks-motion-name">Standard · 220ms</span>
               <span class="ks-mono">220ms cubic-bezier(0.22,1,0.36,1)</span>
-              <span class="ks-note">Card hover, menu item transitions</span>
+              <span class="ks-motion-use">Card hover, menu item transitions</span>
             </div>
             <div class="ks-motion-row">
               <span class="ks-motion-name">Button · 260ms</span>
               <span class="ks-mono">260ms cubic-bezier(0.22,1,0.36,1)</span>
-              <span class="ks-note">Button transform and box-shadow</span>
+              <span class="ks-motion-use">Button transform and box-shadow</span>
             </div>
             <div class="ks-motion-row">
               <span class="ks-motion-name">Reveal · 560ms</span>
               <span class="ks-mono">560ms cubic-bezier(0.22,1,0.36,1)</span>
-              <span class="ks-note">Scroll-triggered entrance animations (.reveal)</span>
+              <span class="ks-motion-use">Scroll-triggered entrance animations (.reveal)</span>
+            </div>
+            <div class="ks-motion-row">
+              <span class="ks-motion-name">Stat count-up</span>
+              <span class="ks-mono">requestAnimationFrame</span>
+              <span class="ks-motion-use">Numbers in .stats-row count from 0 when .focus-section enters view</span>
             </div>
           </div>
         </section>
@@ -602,7 +835,7 @@
         <section class="ks-section" id="buttons">
           <div class="ks-section-title">
             <h2>Buttons</h2>
-            <span class="ks-anchor">.button · two variants only · glint effects active on hover</span>
+            <span class="ks-anchor">.button · two variants + size modifier · glint effects active on hover</span>
           </div>
 
           <div class="ks-row">
@@ -620,13 +853,24 @@
                 <i class="ri-arrow-right-line" aria-hidden="true"></i>
               </a>
             </div>
+            <div class="ks-item">
+              <span class="ks-label">.button.button-black.button-small (nav CTA)</span>
+              <a class="button button-black button-small" href="#">
+                <span>Talk to an AI engineer</span>
+                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="ks-item">
+              <span class="ks-label">.icon-button (footer / social)</span>
+              <a class="icon-button" href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a>
+            </div>
           </div>
 
           <div class="ks-divider"></div>
 
-          <p class="ks-label" style="margin-bottom: 12px;">On dark background (glass button context)</p>
+          <p class="ks-label" style="margin-bottom: 12px;">On dark background (glint contrast)</p>
           <div class="ks-dark-canvas">
-            <div class="ks-row">
+            <div class="ks-row" style="margin-bottom:0;">
               <div class="ks-item">
                 <span class="ks-label" style="color: rgba(255,255,255,0.5);">.button.button-black</span>
                 <a class="button button-black" href="#">
@@ -656,7 +900,7 @@
             </div>
           </div>
           <div class="ks-row">
-            <div class="ks-item">
+            <div class="ks-item" style="width:100%;">
               <span class="ks-label">.button-row.centered</span>
               <div class="button-row centered" style="width: 100%;">
                 <a class="button button-black" href="#"><span>Primary action</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
@@ -664,57 +908,160 @@
               </div>
             </div>
           </div>
+
+          <div class="ks-spec" style="margin-top: 12px;">
+            <div><strong>Two-Button Rule:</strong> exactly one <code>.button-black</code> (the action) + one <code>.button-white</code> (the deferral). Never two primaries; never a solo primary.</div>
+            <div><strong>Glint:</strong> both variants use <code>::before</code>/<code>::after</code> driven by <code>--shine-x</code>/<code>--shine-y</code> — preserve them when copying button markup.</div>
+          </div>
         </section>
 
         <!-- ─────────────────── NAVIGATION ─────────────────── -->
         <section class="ks-section" id="navigation">
           <div class="ks-section-title">
             <h2>Navigation Bar</h2>
-            <span class="ks-anchor">.site-header · fixed pill · glassmorphic · injected from components/nav.html</span>
+            <span class="ks-anchor">.site-header · fixed glass pill · injected from components/nav.html</span>
           </div>
 
-          <p style="color: var(--muted); font-size: var(--text-body); margin-bottom: 24px;">
-            The live nav bar is loaded at the top of every page from <code style="font-family: monospace; font-size: 0.8125rem; background: var(--soft); padding: 2px 6px; border-radius: 4px;">components/nav.html</code>. Below is a static reference specimen showing the structure and states.
+          <p class="ks-note">
+            The live nav is fetched from <span class="ks-inline-code">components/nav.html</span> and injected into
+            <span class="ks-inline-code">&lt;div id="site-nav"&gt;</span> by script.js, which also wires the hover/click
+            mega-menus (<span class="ks-inline-code">.nav-item.has-mega → .is-hovered / .is-open</span>). Below is a static
+            reference of the current seven-item structure.
           </p>
 
-          <!-- Static nav specimen (not fixed, just structural) -->
           <div style="position: relative; padding: 32px; background: linear-gradient(180deg, #e8e8e8, #f4f4f4); border-radius: 16px; overflow: hidden;">
-            <nav style="
-              display: flex;
-              align-items: center;
-              gap: 6px;
-              padding: 12px 14px 12px 24px;
-              border: 1px solid rgba(255,255,255,0.74);
-              border-radius: 999px;
-              background: rgba(255,255,255,0.72);
-              box-shadow: 0 18px 48px rgba(18,18,18,0.08);
-              backdrop-filter: blur(22px) saturate(1.25);
-              -webkit-backdrop-filter: blur(22px) saturate(1.25);
-              width: fit-content;
-              margin: 0 auto;
-            ">
-              <img src="assets/brand/applaudo.svg" alt="Applaudo" style="width: 130px; margin-right: 8px;" />
-              <a href="#" style="display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:999px;color:rgba(18,18,18,0.72);font-size:0.875rem;font-weight:600;text-decoration:none;">Services</a>
-              <a href="#" style="display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:999px;color:rgba(18,18,18,0.72);font-size:0.875rem;font-weight:600;text-decoration:none;">Industries</a>
-              <a href="#" style="display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:999px;color:#121212;font-size:0.875rem;font-weight:600;text-decoration:none;background:rgba(18,18,18,0.04);box-shadow:inset 0 0 0 1px rgba(18,18,18,0.08);">Partnerships</a>
-              <a href="#" class="button button-black" style="min-height:38px;padding:0 18px;font-size:0.8125rem;"><span>Talk to us</span></a>
-            </nav>
+            <div class="ks-nav-pill">
+              <img src="assets/brand/applaudo.svg" alt="Applaudo" />
+              <a class="ks-nl" href="#">Industries<i class="ri-arrow-down-s-line"></i></a>
+              <a class="ks-nl" href="#">Services<i class="ri-arrow-down-s-line"></i></a>
+              <a class="ks-nl" href="#">Partners<i class="ri-arrow-down-s-line"></i></a>
+              <a class="ks-nl is-active" href="#">Work<i class="ri-arrow-down-s-line"></i></a>
+              <a class="ks-nl" href="#">Insights<i class="ri-arrow-down-s-line"></i></a>
+              <a class="ks-nl" href="#">About<i class="ri-arrow-down-s-line"></i></a>
+              <a class="ks-nl" href="#">Careers</a>
+              <a class="button button-black button-small" href="#" style="margin-left:6px;"><span>Talk to an AI engineer</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+            </div>
           </div>
 
           <div class="ks-divider"></div>
 
-          <div style="display: grid; grid-template-columns: repeat(3, auto); gap: 12px; align-items: center;">
+          <div style="display: grid; grid-template-columns: repeat(3, auto); gap: 16px; align-items: end; justify-content: start;">
             <div class="ks-item">
               <span class="ks-label">Nav link — rest</span>
-              <a href="#" style="display:inline-flex;align-items:center;height:40px;padding:0 12px;border-radius:999px;color:rgba(18,18,18,0.72);font-size:0.875rem;font-weight:600;border:1px solid transparent;">Services</a>
+              <a class="ks-nl" href="#" style="border:1px solid var(--line);">Services<i class="ri-arrow-down-s-line"></i></a>
             </div>
             <div class="ks-item">
-              <span class="ks-label">Nav link — hover/active</span>
-              <a href="#" style="display:inline-flex;align-items:center;height:40px;padding:0 12px;border-radius:999px;color:#121212;font-size:0.875rem;font-weight:600;background:rgba(18,18,18,0.04);box-shadow:inset 0 0 0 1px rgba(18,18,18,0.08);">Services</a>
+              <span class="ks-label">Nav link — hover / active</span>
+              <a class="ks-nl is-active" href="#">Services<i class="ri-arrow-down-s-line"></i></a>
             </div>
             <div class="ks-item">
-              <span class="ks-label">Nav CTA button</span>
-              <a href="#" class="button button-black" style="min-height:38px;padding:0 18px;font-size:0.8125rem;"><span>Talk to us</span></a>
+              <span class="ks-label">Mobile · .menu-button (≤ 980px)</span>
+              <button class="icon-button" type="button" aria-label="Open navigation"><i class="ri-menu-line"></i></button>
+            </div>
+          </div>
+
+          <div class="ks-spec" style="margin-top: 24px;">
+            <div><strong>Mega-menu variants:</strong> <code>.industries-menu</code> (prominent + secondary), <code>.services-list-menu</code> (8 services), <code>.compact-menu</code> (Partners, Insights, About), <code>.two-col-menu</code> (Work).</div>
+            <div><strong>Collapse:</strong> below 980px the nav collapses to <code>.menu-button</code>; <code>body.menu-open</code> opens the full-screen overlay and locks scroll.</div>
+          </div>
+        </section>
+
+        <!-- ─────────────────── FOOTER ─────────────────── -->
+        <section class="ks-section" id="footer">
+          <div class="ks-section-title">
+            <h2>Footer</h2>
+            <span class="ks-anchor">.site-footer · shared across every page</span>
+          </div>
+
+          <p class="ks-note">Three-block footer: brand + columns, partner/cert badge strip, then socials and legal links.</p>
+
+          <div class="ks-stage">
+            <footer class="site-footer">
+              <div class="footer-top">
+                <div class="footer-brand">
+                  <img src="assets/brand/applaudo.svg" alt="Applaudo" />
+                  <p>Austin, TX · San Salvador, SS</p>
+                </div>
+                <div class="footer-columns">
+                  <div>
+                    <h2>Services</h2>
+                    <a href="#">AI Strategy &amp; Transformation</a>
+                    <a href="#">AI Build &amp; Deploy</a>
+                    <a href="#">AI Engineering</a>
+                    <a href="#">Product &amp; AI Design</a>
+                  </div>
+                  <div>
+                    <h2>Industries</h2>
+                    <a href="#">Retail &amp; Consumer</a>
+                    <a href="#">Travel &amp; Hospitality</a>
+                    <a href="#">Sports, Media &amp; Entertainment</a>
+                    <a href="#">Financial Services</a>
+                  </div>
+                  <div>
+                    <h2>Company</h2>
+                    <a href="#">About</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Press</a>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-badges">
+                <span>Google Cloud</span><span>AWS</span><span>Microsoft</span><span>Salesforce</span>
+                <span>Mandiant</span><span>Fortinet</span><span>ISO 27001</span><span>IQNet</span>
+              </div>
+              <div class="footer-bottom">
+                <div class="socials" aria-label="Social links">
+                  <a class="icon-button" href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a>
+                  <a class="icon-button" href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                  <a class="icon-button" href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+                </div>
+                <div class="legal-links">
+                  <a href="#">Privacy policy</a>
+                  <a href="#">Cookie policy</a>
+                  <a href="#">Terms of service</a>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </section>
+
+        <!-- ─────────────────── LABELS & TAGS ─────────────────── -->
+        <section class="ks-section" id="labels">
+          <div class="ks-section-title">
+            <h2>Labels &amp; Tags</h2>
+            <span class="ks-anchor">.eyebrow · .tagline · .case-pill · .ai-spark-chip</span>
+          </div>
+
+          <div class="ks-row" style="align-items: flex-start; gap: 36px;">
+            <div class="ks-item">
+              <span class="ks-label">.eyebrow (section kicker)</span>
+              <p class="eyebrow" style="margin: 0;">AI Engineering</p>
+            </div>
+            <div class="ks-item">
+              <span class="ks-label">.section-kicker (logo-cloud lead-in)</span>
+              <p class="section-kicker" style="margin: 0;">Building AI for enterprise leaders.</p>
+            </div>
+            <div class="ks-item">
+              <span class="ks-label">.tagline (card label)</span>
+              <p class="tagline" style="margin: 0;">Retail · ML Ops</p>
+            </div>
+            <div class="ks-item">
+              <span class="ks-label">.case-pills + .case-pill</span>
+              <div class="case-pills">
+                <span class="case-pill">Retail &amp; Consumer</span>
+                <span class="case-pill">Data Platforms</span>
+              </div>
+            </div>
+            <div class="ks-item">
+              <span class="ks-label">.story-card-badge</span>
+              <span class="story-card-badge" style="position: static;">Artificial Intelligence</span>
+            </div>
+            <div class="ks-item">
+              <span class="ks-label">.ai-spark-chip</span>
+              <div class="ai-spark-chip" aria-hidden="true">
+                <img src="assets/ui/ai-spark.svg" alt="" />
+              </div>
             </div>
           </div>
         </section>
@@ -726,11 +1073,12 @@
             <span class="ks-anchor">.glass-card · pointer-reactive red shine · backdrop-filter</span>
           </div>
 
-          <p style="color: var(--muted); font-size: var(--text-body); margin-bottom: 32px;">
-            Move your cursor over the cards. The red radial highlight follows the pointer via <code style="font-family: monospace; font-size: 0.8125rem; background: var(--soft); padding: 2px 6px; border-radius: 4px;">--shine-x / --shine-y</code> set by script.js.
+          <p class="ks-note">
+            Move your cursor over the cards. The red radial highlight follows the pointer via
+            <span class="ks-inline-code">--shine-x / --shine-y</span> set by script.js.
           </p>
 
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; background: linear-gradient(135deg, #e8e8e8, #f0f0f0); padding: 40px; border-radius: 20px;">
+          <div class="ks-light-canvas" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
             <div class="glass-card" style="padding: 28px 32px;">
               <p class="eyebrow">Strategy</p>
               <h3 style="margin: 0 0 12px; font-size: var(--text-title-sm); font-weight: 600; line-height: 1.2;">Enterprise AI foundations that scale</h3>
@@ -748,13 +1096,10 @@
             </div>
           </div>
 
-          <div class="ks-divider"></div>
-
-          <div style="display: grid; gap: 12px; padding: 16px; background: var(--soft); border-radius: 12px; font-size: 0.8125rem;">
-            <div><strong>Background:</strong> <code style="font-family: monospace;">linear-gradient(145deg, rgba(255,255,255,0.82), rgba(255,255,255,0.46)) + radial-gradient at --shine-x/--shine-y</code></div>
-            <div><strong>Border:</strong> <code style="font-family: monospace;">1px solid rgba(255,255,255,0.76)</code></div>
-            <div><strong>Backdrop:</strong> <code style="font-family: monospace;">blur(24px) saturate(1.4)</code></div>
-            <div><strong>Shadow (rest):</strong> <code style="font-family: monospace;">--shadow (Ambient Lift)</code> · <strong>hover:</strong> Deep Hover + <code style="font-family: monospace;">translateY(-3px)</code></div>
+          <div class="ks-spec" style="margin-top: 24px;">
+            <div><strong>Background:</strong> <code>linear-gradient(145deg, rgba(255,255,255,0.82), rgba(255,255,255,0.46))</code> + radial shine at <code>--shine-x/--shine-y</code></div>
+            <div><strong>Border:</strong> <code>1px solid rgba(255,255,255,0.76)</code> · <strong>Backdrop:</strong> <code>blur(24px) saturate(1.4)</code></div>
+            <div><strong>Shadow:</strong> Ambient Lift at rest · Deep Hover + <code>translateY(-4px)</code> on hover</div>
           </div>
         </section>
 
@@ -762,34 +1107,108 @@
         <section class="ks-section" id="case-card">
           <div class="ks-section-title">
             <h2>Case Card</h2>
-            <span class="ks-anchor">.case-card · .case-card-feature · asymmetric grid 1.08fr / 0.72fr</span>
+            <span class="ks-anchor">.case-grid · .case-card-feature + .case-aside &gt; .case-card-h</span>
           </div>
 
-          <p style="color: var(--muted); font-size: var(--text-body); margin-bottom: 32px;">
-            Feature card spans two rows. Non-feature cards are smaller. Never use a uniform grid.
+          <p class="ks-note">
+            Asymmetric work grid: one feature card beside a stacked <span class="ks-inline-code">.case-aside</span> of two
+            horizontal <span class="ks-inline-code">.case-card-h</span>. Each card pairs a <span class="ks-inline-code">.tagline</span>,
+            <span class="ks-inline-code">.case-pills</span>, an h3, and a <span class="ks-inline-code">.case-cta</span> affordance.
           </p>
 
           <div class="case-grid">
-            <!-- Feature card -->
             <a class="case-card case-card-feature" href="#">
-              <div class="case-visual visual-retail"></div>
-              <p class="tagline">Retail · ML Ops</p>
-              <h3>AI-driven demand forecasting for global retail</h3>
-              <p class="result">43% reduction in stockouts across 2,000+ SKUs</p>
+              <div class="case-visual visual-retail" aria-hidden="true"></div>
+              <div>
+                <p class="tagline">AI Engineering</p>
+                <div class="case-pills">
+                  <span class="case-pill">Retail &amp; Consumer</span>
+                  <span class="case-pill">Data Platforms</span>
+                </div>
+                <h3>A Fortune 1 retailer rebuilt inventory forecasting around AI and predictive analytics.</h3>
+                <span class="case-cta">Read the story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+              </div>
             </a>
-            <!-- Secondary cards -->
-            <a class="case-card" href="#">
-              <div class="case-visual visual-sports"></div>
-              <p class="tagline">Sports &amp; Media · LLM</p>
-              <h3>Real-time AI broadcast assistant for live events</h3>
-              <p class="result">Zero latency gap across 4 broadcasts</p>
-            </a>
-            <a class="case-card" href="#">
-              <div class="case-visual visual-travel"></div>
-              <p class="tagline">Travel · AI Engineering</p>
-              <h3>Personalized itinerary engine for hospitality</h3>
-              <p class="result">2.4× increase in ancillary revenue per booking</p>
-            </a>
+            <div class="case-aside">
+              <a class="case-card case-card-h" href="#">
+                <div class="case-visual visual-sports" aria-hidden="true"></div>
+                <div>
+                  <p class="tagline">AI Engineering</p>
+                  <div class="case-pills">
+                    <span class="case-pill">Sports &amp; Media</span>
+                    <span class="case-pill">Product Design</span>
+                  </div>
+                  <h3>An NBA franchise modernized arena operations with real-time AI and unified data.</h3>
+                  <span class="case-cta">Read the story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                </div>
+              </a>
+              <a class="case-card case-card-h" href="#">
+                <div class="case-visual visual-travel" aria-hidden="true"></div>
+                <div>
+                  <p class="tagline">AI Engineering</p>
+                  <div class="case-pills">
+                    <span class="case-pill">Travel &amp; Hospitality</span>
+                    <span class="case-pill">Mobile</span>
+                  </div>
+                  <h3>A luxury cruise brand drove higher mobile booking conversion with real-time AI personalization.</h3>
+                  <span class="case-cta">Read the story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="ks-spec" style="margin-top: 28px;">
+            <div><strong>Visual helpers:</strong> <code>.visual-retail</code>, <code>.visual-sports</code>, <code>.visual-travel</code>, <code>.visual-work-cloud</code>, <code>.visual-work-ai</code>, <code>.visual-work-salesforce</code> — each sets a full-bleed image + dark gradient on <code>.case-visual</code>.</div>
+          </div>
+        </section>
+
+        <!-- ─────────────────── STORY CARD ─────────────────── -->
+        <section class="ks-section" id="story-card">
+          <div class="ks-section-title">
+            <h2>Story Card</h2>
+            <span class="ks-anchor">.story-card · work library grid item · image + badge + title + cta</span>
+          </div>
+
+          <p class="ks-note">
+            The repeating unit of the customer-stories library. Image comes from the
+            <span class="ks-inline-code">--story-image</span> custom property on <span class="ks-inline-code">.story-card-media</span>;
+            <span class="ks-inline-code">data-industries</span> / <span class="ks-inline-code">data-services</span> drive filtering (see Story Browser).
+          </p>
+
+          <div class="story-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <article class="story-card">
+              <a href="#">
+                <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=900&q=82');">
+                  <span class="story-card-badge">Artificial Intelligence</span>
+                </div>
+                <div class="story-card-body">
+                  <h3>Optimizing Inventory with AI, Cloud, and Predictive Analytics</h3>
+                  <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                </div>
+              </a>
+            </article>
+            <article class="story-card">
+              <a href="#">
+                <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=900&q=82');">
+                  <span class="story-card-badge">Data</span>
+                </div>
+                <div class="story-card-body">
+                  <h3>Transforming Arena Operations Systems with Data and Design</h3>
+                  <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                </div>
+              </a>
+            </article>
+            <article class="story-card">
+              <a href="#">
+                <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=82');">
+                  <span class="story-card-badge">Cloud</span>
+                </div>
+                <div class="story-card-body">
+                  <h3>Shaping a Nation's Digital Transformation with Cloud</h3>
+                  <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                </div>
+              </a>
+            </article>
           </div>
         </section>
 
@@ -797,142 +1216,910 @@
         <section class="ks-section" id="industry-tile">
           <div class="ks-section-title">
             <h2>Industry Tile</h2>
-            <span class="ks-anchor">.industry-tile · full-bleed background image · dark gradient overlay</span>
+            <span class="ks-anchor">.industry-tile-grid &gt; .industry-tile.industry-visual-* · hover lift</span>
           </div>
 
-          <div class="industry-tile-grid" style="grid-template-columns: repeat(4, 1fr);">
-            <div class="industry-tile" style="background-image: url('https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=600&q=80');">
-              <span><i class="ri-shopping-cart-2-line"></i>Retail</span>
-              <p>Walmart, Dollarama, Rappi</p>
+          <p class="ks-note">
+            Image is set by a <span class="ks-inline-code">.industry-visual-*</span> helper class (no inline URLs) so all pages
+            share the same imagery.
+          </p>
+
+          <div class="industry-tile-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <a class="industry-tile industry-visual-retail" href="#">
+              <span><i class="ri-shopping-bag-3-line" aria-hidden="true"></i>Retail &amp; Consumer</span>
+              <p>Demand · Content · Commerce</p>
+            </a>
+            <a class="industry-tile industry-visual-travel" href="#">
+              <span><i class="ri-plane-line" aria-hidden="true"></i>Travel &amp; Hospitality</span>
+              <p>Booking · Loyalty · Guest ops</p>
+            </a>
+            <a class="industry-tile industry-visual-sports" href="#">
+              <span><i class="ri-basketball-line" aria-hidden="true"></i>Sports, Media &amp; Entertainment</span>
+              <p>Venue · Broadcast · Fan data</p>
+            </a>
+            <a class="industry-tile industry-visual-finance" href="#">
+              <span><i class="ri-bank-line" aria-hidden="true"></i>Financial Services</span>
+              <p>Risk · Fraud · Compliance</p>
+            </a>
+            <a class="industry-tile industry-visual-technology" href="#">
+              <span><i class="ri-smartphone-line" aria-hidden="true"></i>Technology</span>
+              <p>Platform · DevEx · Scale</p>
+            </a>
+            <a class="industry-tile industry-visual-healthcare" href="#">
+              <span><i class="ri-heart-pulse-line" aria-hidden="true"></i>Healthcare</span>
+              <p>Clinical · Imaging · Patient ops</p>
+            </a>
+          </div>
+
+          <div class="ks-spec" style="margin-top: 24px;">
+            <div><strong>Helpers:</strong> <code>industry-visual-retail · -travel · -sports · -finance · -healthcare · -technology · -manufacturing</code></div>
+          </div>
+        </section>
+
+        <!-- ─────────────────── INDUSTRY PANEL ─────────────────── -->
+        <section class="ks-section" id="industry-panel">
+          <div class="ks-section-title">
+            <h2>Industry Panel</h2>
+            <span class="ks-anchor">.industry-panel-row &gt; .industry-panel · hover-reveal copy + client logos</span>
+          </div>
+
+          <p class="ks-note">
+            The primary industries grid on the Industries page. At rest each panel shows only its icon + name; on hover the
+            <span class="ks-inline-code">.industry-panel-reveal</span> expands to show the tagline, client logos, and a
+            <span class="ks-inline-code">.industry-card-cta</span>.
+          </p>
+
+          <div class="industry-panels-grid">
+            <div class="industry-panel-row">
+              <a class="industry-panel" href="#" style="--panel-index:0">
+                <div class="industry-panel-bg industry-visual-finance"></div>
+                <div class="industry-panel-overlay"></div>
+                <div class="industry-panel-content">
+                  <div class="industry-panel-ident">
+                    <i class="ri-bank-line" aria-hidden="true"></i>
+                    <h3>Financial Services</h3>
+                  </div>
+                  <div class="industry-panel-reveal">
+                    <div class="industry-panel-reveal-inner">
+                      <p class="industry-panel-tagline">Underwriting, fraud detection, and compliance, automated through AI.</p>
+                      <div class="industry-panel-logos">
+                        <img src="assets/clients/Industries%20Cards/Atlantida%20Banco.svg" alt="Atlantida Banco" />
+                        <img src="assets/clients/Industries%20Cards/Multimoney.svg" alt="Multimoney" />
+                      </div>
+                      <span class="industry-card-cta">
+                        See AI we've built in Financial Services
+                        <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a class="industry-panel" href="#" style="--panel-index:1">
+                <div class="industry-panel-bg industry-visual-retail"></div>
+                <div class="industry-panel-overlay"></div>
+                <div class="industry-panel-content">
+                  <div class="industry-panel-ident">
+                    <i class="ri-shopping-bag-3-line" aria-hidden="true"></i>
+                    <h3>Retail &amp; Consumer</h3>
+                  </div>
+                  <div class="industry-panel-reveal">
+                    <div class="industry-panel-reveal-inner">
+                      <p class="industry-panel-tagline">Forecasting demand, personalizing the shopping experience, and scaling content with AI.</p>
+                      <div class="industry-panel-logos">
+                        <img src="assets/clients/Industries%20Cards/Walmart.svg" alt="Walmart" />
+                        <img src="assets/clients/Industries%20Cards/Rappi.svg" alt="Rappi" />
+                      </div>
+                      <span class="industry-card-cta">
+                        See AI we've built in Retail &amp; Consumer
+                        <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a class="industry-panel" href="#" style="--panel-index:2">
+                <div class="industry-panel-bg industry-visual-travel"></div>
+                <div class="industry-panel-overlay"></div>
+                <div class="industry-panel-content">
+                  <div class="industry-panel-ident">
+                    <i class="ri-plane-line" aria-hidden="true"></i>
+                    <h3>Travel &amp; Hospitality</h3>
+                  </div>
+                  <div class="industry-panel-reveal">
+                    <div class="industry-panel-reveal-inner">
+                      <p class="industry-panel-tagline">Powering booking, loyalty, and guest experience with AI engineering.</p>
+                      <div class="industry-panel-logos">
+                        <img src="assets/clients/Industries%20Cards/Volaris.svg" alt="Volaris" />
+                        <img src="assets/clients/Industries%20Cards/Holiday_Inn.svg" alt="Holiday Inn" />
+                      </div>
+                      <span class="industry-card-cta">
+                        See AI we've built in Travel &amp; Hospitality
+                        <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
-            <div class="industry-tile" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80');">
-              <span><i class="ri-football-line"></i>Sports &amp; Media</span>
-              <p>Golden State Warriors, NCAA, NBC Sports</p>
+          </div>
+        </section>
+
+        <!-- ─────────────────── INDUSTRY ROW ─────────────────── -->
+        <section class="ks-section" id="industry-row">
+          <div class="ks-section-title">
+            <h2>Industry Row</h2>
+            <span class="ks-anchor">.industry-row-list &gt; .industry-row · secondary industries list</span>
+          </div>
+
+          <p class="ks-note">Compact list rows for secondary industries — icon + name, subline, and a hover arrow.</p>
+
+          <div class="industry-row-list">
+            <a class="industry-row" href="#">
+              <span class="industry-row-main">
+                <i class="industry-card-icon ri-settings-3-line" aria-hidden="true"></i>
+                <h3>Manufacturing</h3>
+              </span>
+              <p class="industry-row-sub">Inspecting production, predicting failure, and optimizing the supply chain with AI.</p>
+              <span class="industry-row-arrow" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            <a class="industry-row" href="#">
+              <span class="industry-row-main">
+                <i class="industry-card-icon ri-government-line" aria-hidden="true"></i>
+                <h3>Public Sector</h3>
+              </span>
+              <p class="industry-row-sub">Modernizing government services and citizen experience with AI and cloud.</p>
+              <span class="industry-row-arrow" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            <a class="industry-row" href="#">
+              <span class="industry-row-main">
+                <i class="industry-card-icon ri-building-line" aria-hidden="true"></i>
+                <h3>Real Estate</h3>
+              </span>
+              <p class="industry-row-sub">Streamlining transactions and portfolio operations with AI engineering.</p>
+              <span class="industry-row-arrow" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ─────────────────── ENGAGEMENT CARD ─────────────────── -->
+        <section class="ks-section" id="engagement">
+          <div class="ks-section-title">
+            <h2>Engagement Card</h2>
+            <span class="ks-anchor">.engagement-grid &gt; .engagement-card · numbered entry points</span>
+          </div>
+
+          <div class="engagement-grid">
+            <a class="engagement-card" href="#">
+              <span>01</span>
+              <h3>Strategy.</h3>
+              <p>When you don't know what to build yet.</p>
+            </a>
+            <a class="engagement-card" href="#">
+              <span>02</span>
+              <h3>Build.</h3>
+              <p>When you know what to build, and need senior engineers to ship it.</p>
+            </a>
+            <a class="engagement-card" href="#">
+              <span>03</span>
+              <h3>Operate.</h3>
+              <p>When it's running, and the work is keeping it running.</p>
+            </a>
+          </div>
+        </section>
+
+        <!-- ─────────────────── NEXT-STEP CARD ─────────────────── -->
+        <section class="ks-section" id="next-step">
+          <div class="ks-section-title">
+            <h2>Next-Step Card</h2>
+            <span class="ks-anchor">.next-step-grid &gt; .next-step-card · icon + title + copy + cta</span>
+          </div>
+
+          <div class="next-step-grid">
+            <a class="next-step-card" href="#">
+              <div class="next-step-icon"><i class="ri-stack-line" aria-hidden="true"></i></div>
+              <h3>Services</h3>
+              <p>Explore a full range of digital services, from app development to AI integration.</p>
+              <span class="next-step-cta">Learn more <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+            </a>
+            <a class="next-step-card" href="#">
+              <div class="next-step-icon"><i class="ri-chat-3-line" aria-hidden="true"></i></div>
+              <h3>Contact Us</h3>
+              <p>Contact us to optimize operations and accelerate your digital journey.</p>
+              <span class="next-step-cta">Get in touch <i class="ri-arrow-right-up-line" aria-hidden="true"></i></span>
+            </a>
+            <a class="next-step-card" href="#">
+              <div class="next-step-icon"><i class="ri-mail-line" aria-hidden="true"></i></div>
+              <h3>Newsletter</h3>
+              <p>Subscribe to our newsletter and gain valuable knowledge and insights from our team.</p>
+              <span class="next-step-cta">Subscribe <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+            </a>
+          </div>
+        </section>
+
+        <!-- ─────────────────── REASON ITEM ─────────────────── -->
+        <section class="ks-section" id="reason">
+          <div class="ks-section-title">
+            <h2>Reason Item</h2>
+            <span class="ks-anchor">.reasons-system &gt; .reason-visual + .reason-stack &gt; .reason-item</span>
+          </div>
+
+          <p class="ks-note">Numbered argument stack paired with a layered <span class="ks-inline-code">.reason-visual</span> on the home page.</p>
+
+          <div class="reasons-system">
+            <div class="reason-visual" aria-hidden="true">
+              <div class="reason-photo"></div>
+              <div class="reason-layers">
+                <span>Data</span>
+                <span>Runbook</span>
+                <span>Roadmap</span>
+              </div>
             </div>
-            <div class="industry-tile" style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80');">
-              <span><i class="ri-flight-takeoff-line"></i>Travel &amp; Hospitality</span>
-              <p>Ritz-Carlton, Volaris</p>
-            </div>
-            <div class="industry-tile" style="background-image: url('https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=600&q=80');">
-              <span><i class="ri-bank-line"></i>Financial Services</span>
-              <p>Bain, Atlantida Banco</p>
+            <div class="reason-stack">
+              <article class="reason-item">
+                <span>01</span>
+                <h3>We start with your data.</h3>
+                <p>The model is the easy part. The work is everything around it: your data, your evaluation criteria, and the failure modes that matter most.</p>
+              </article>
+              <article class="reason-item">
+                <span>02</span>
+                <h3>We stay through year three.</h3>
+                <p>Every system ships with the runbook, the retraining pipeline, and the dashboard your team will run it from.</p>
+              </article>
+              <article class="reason-item">
+                <span>03</span>
+                <h3>We tell you what we'd build first.</h3>
+                <p>Sometimes that means waiting. Always it means the honest read, on the first call, before the proposal.</p>
+              </article>
             </div>
           </div>
         </section>
 
         <!-- ─────────────────── STATS ROW ─────────────────── -->
-        <section class="ks-section focus-section is-visible" id="stats">
+        <section class="ks-section focus-section reveal" id="stats">
           <div class="ks-section-title">
             <h2>Stats Row</h2>
-            <span class="ks-anchor">.stats-row · 4-column · stagger delay via --stat-index · triggered by .is-visible on parent</span>
+            <span class="ks-anchor">.focus-layout &gt; .stats-intro + .stats-row · count-up via data-stat-value</span>
           </div>
 
-          <div class="stats-row">
-            <div style="--stat-index: 0">
-              <i class="ri-team-line" aria-hidden="true"></i>
-              <strong>800+</strong>
-              <span>Engineers across 27 countries</span>
+          <p class="ks-note">
+            Numbers count up from zero (<span class="ks-inline-code">data-stat-value</span> + optional
+            <span class="ks-inline-code">data-stat-suffix</span>) the first time the parent
+            <span class="ks-inline-code">.focus-section</span> scrolls into view. Each cell pairs a RemixIcon, the figure, and a label.
+          </p>
+
+          <div class="focus-layout">
+            <div class="stats-intro">
+              <h2>Built to keep building.</h2>
+              <p>What we are today, and what we're scaling next.</p>
             </div>
-            <div style="--stat-index: 1">
-              <i class="ri-building-2-line" aria-hidden="true"></i>
-              <strong>23</strong>
-              <span>Years delivering enterprise software</span>
-            </div>
-            <div style="--stat-index: 2">
-              <i class="ri-medal-line" aria-hidden="true"></i>
-              <strong>3</strong>
-              <span>Google Cloud Partner of the Year awards</span>
-            </div>
-            <div style="--stat-index: 3">
-              <i class="ri-rocket-line" aria-hidden="true"></i>
-              <strong>150+</strong>
-              <span>AI systems in production</span>
+            <div class="stats-row">
+              <div>
+                <i class="ri-team-line" aria-hidden="true"></i>
+                <strong data-stat-value="800" data-stat-suffix="+">800+</strong><span>engineers</span>
+              </div>
+              <div>
+                <i class="ri-global-line" aria-hidden="true"></i>
+                <strong data-stat-value="27">27</strong><span>countries</span>
+              </div>
+              <div>
+                <i class="ri-stack-line" aria-hidden="true"></i>
+                <strong data-stat-value="12" data-stat-suffix="+">12+</strong><span>years in production</span>
+              </div>
+              <div>
+                <i class="ri-loop-right-line" aria-hidden="true"></i>
+                <strong data-stat-value="90" data-stat-suffix="%">90%</strong><span>client retention</span>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- ─────────────────── SECTION HEADING ─────────────────── -->
-        <section class="ks-section" id="section-heading">
+        <!-- ─────────────────── TESTIMONIALS ─────────────────── -->
+        <section class="ks-section" id="testimonials">
           <div class="ks-section-title">
-            <h2>Section Heading Pattern</h2>
-            <span class="ks-anchor">.eyebrow + h2 + subhead — standard opener for every major section</span>
+            <h2>Testimonials</h2>
+            <span class="ks-anchor">.testimonial-stack · stacked-card carousel · prev / next / dots</span>
           </div>
 
-          <div style="max-width: 760px; padding: 40px; background: var(--soft); border-radius: 16px;">
+          <p class="ks-note">
+            Stacked-card carousel wired by script.js (<span class="ks-inline-code">[data-testimonial-stack]</span>). Use the
+            arrows or dots to cycle; cards carry a <span class="ks-inline-code">data-pos</span> that the script rotates.
+          </p>
+
+          <div class="testimonial-stack-wrap">
+            <div class="testimonial-stack" data-testimonial-stack>
+              <figure class="testimonial-card" data-pos="0">
+                <div class="testimonial-card-inner">
+                  <i class="testimonial-mark ri-double-quotes-l" aria-hidden="true"></i>
+                  <blockquote>
+                    Applaudo has integrated well with the internal team. Their frontend expertise and UI capabilities have been a valuable asset.
+                  </blockquote>
+                  <figcaption class="testimonial-cite">
+                    <span class="testimonial-avatar" aria-hidden="true"><i class="ri-user-3-line"></i></span>
+                    <span class="testimonial-cite-text">
+                      <strong>VP, Software Development</strong>
+                      <span>Risk Management Company</span>
+                    </span>
+                  </figcaption>
+                </div>
+              </figure>
+              <figure class="testimonial-card" data-pos="1">
+                <div class="testimonial-card-inner">
+                  <i class="testimonial-mark ri-double-quotes-l" aria-hidden="true"></i>
+                  <blockquote>
+                    They've essentially become an extended arm of our development team. Their proactive approach makes them a valuable partner.
+                  </blockquote>
+                  <figcaption class="testimonial-cite">
+                    <span class="testimonial-avatar" aria-hidden="true"><i class="ri-user-3-line"></i></span>
+                    <span class="testimonial-cite-text">
+                      <strong>Senior Director, Strategy &amp; Operations</strong>
+                      <span>NBA Sports Team</span>
+                    </span>
+                  </figcaption>
+                </div>
+              </figure>
+              <figure class="testimonial-card" data-pos="2">
+                <div class="testimonial-card-inner">
+                  <i class="testimonial-mark ri-double-quotes-l" aria-hidden="true"></i>
+                  <blockquote>
+                    Applaudo takes pride in their work and goes above and beyond. They have gone the extra mile to exceed our needs.
+                  </blockquote>
+                  <figcaption class="testimonial-cite">
+                    <span class="testimonial-avatar" aria-hidden="true"><i class="ri-user-3-line"></i></span>
+                    <span class="testimonial-cite-text">
+                      <strong>SVP, Product Engineering</strong>
+                      <span>Customer Value Management Platform</span>
+                    </span>
+                  </figcaption>
+                </div>
+              </figure>
+              <figure class="testimonial-card" data-pos="3">
+                <div class="testimonial-card-inner">
+                  <i class="testimonial-mark ri-double-quotes-l" aria-hidden="true"></i>
+                  <blockquote>
+                    Applaudo produced streamlined deliverables. Their team has impressive Cloud and solution hygiene.
+                  </blockquote>
+                  <figcaption class="testimonial-cite">
+                    <span class="testimonial-avatar" aria-hidden="true"><i class="ri-user-3-line"></i></span>
+                    <span class="testimonial-cite-text">
+                      <strong>Chief Technology Officer</strong>
+                      <span>Sports Certification Program</span>
+                    </span>
+                  </figcaption>
+                </div>
+              </figure>
+              <figure class="testimonial-card" data-pos="4">
+                <div class="testimonial-card-inner">
+                  <i class="testimonial-mark ri-double-quotes-l" aria-hidden="true"></i>
+                  <blockquote>
+                    From kickoff to go-live, the communication was exceptional. They became a true extension of our engineering team.
+                  </blockquote>
+                  <figcaption class="testimonial-cite">
+                    <span class="testimonial-avatar" aria-hidden="true"><i class="ri-user-3-line"></i></span>
+                    <span class="testimonial-cite-text">
+                      <strong>Head of Digital Products</strong>
+                      <span>Global Logistics Company</span>
+                    </span>
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+
+            <div class="testimonial-nav">
+              <button class="testimonial-arrow" type="button" data-testimonial-prev aria-label="Previous testimonial">
+                <i class="ri-arrow-left-line" aria-hidden="true"></i>
+              </button>
+              <div class="testimonial-dots" data-testimonial-dots aria-label="Select testimonial"></div>
+              <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Next testimonial">
+                <i class="ri-arrow-right-line" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────── STORY BROWSER ─────────────────── -->
+        <section class="ks-section work-customers-section" id="story-browser">
+          <div class="ks-section-title">
+            <h2>Story Browser</h2>
+            <span class="ks-anchor">.story-layout · faceted filter sidebar + search + pagination (live)</span>
+          </div>
+
+          <p class="ks-note">
+            Fully interactive (wired by script.js): multi-select Industry / Service accordion facets, live text search, a
+            "clear all" reset, and pagination at 8 cards per page. Try the checkboxes and search below.
+          </p>
+
+          <div class="story-layout">
+            <aside class="story-sidebar" aria-label="Filter customer stories">
+              <div class="story-filter-card">
+                <div class="story-search">
+                  <i class="ri-search-line" aria-hidden="true"></i>
+                  <input type="search" placeholder="Search stories" aria-label="Search customer stories" data-story-search />
+                </div>
+
+                <div class="story-acc-group" data-acc-group>
+                  <button type="button" class="story-acc-header" data-acc-toggle data-group="industry" aria-expanded="false">
+                    <span class="story-acc-title">Industries</span>
+                    <span class="story-acc-count" data-acc-count hidden></span>
+                    <i class="ri-arrow-down-s-line story-acc-chevron" aria-hidden="true"></i>
+                  </button>
+                  <div class="story-acc-panel" data-acc-panel>
+                    <div class="story-acc-panel-inner">
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="industry" value="retail" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Retail</span>
+                        <span class="story-option-count">3</span>
+                      </label>
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="industry" value="public-sector" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Public Sector</span>
+                        <span class="story-option-count">2</span>
+                      </label>
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="industry" value="sports-and-entertainment" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Sports and Entertainment</span>
+                        <span class="story-option-count">2</span>
+                      </label>
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="industry" value="airlines" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Airlines</span>
+                        <span class="story-option-count">2</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="story-acc-group" data-acc-group>
+                  <button type="button" class="story-acc-header" data-acc-toggle data-group="service" aria-expanded="false">
+                    <span class="story-acc-title">Services</span>
+                    <span class="story-acc-count" data-acc-count hidden></span>
+                    <i class="ri-arrow-down-s-line story-acc-chevron" aria-hidden="true"></i>
+                  </button>
+                  <div class="story-acc-panel" data-acc-panel>
+                    <div class="story-acc-panel-inner">
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="service" value="cloud" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Cloud</span>
+                        <span class="story-option-count">6</span>
+                      </label>
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="service" value="artificial-intelligence" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Artificial Intelligence</span>
+                        <span class="story-option-count">4</span>
+                      </label>
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="service" value="data" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Data</span>
+                        <span class="story-option-count">6</span>
+                      </label>
+                      <label class="story-option">
+                        <input type="checkbox" data-facet="service" value="development" />
+                        <span class="story-option-box" aria-hidden="true"></span>
+                        <span class="story-option-name">Development</span>
+                        <span class="story-option-count">5</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" class="story-clear" data-story-clear hidden>
+                  <i class="ri-close-line" aria-hidden="true"></i> Clear all filters
+                </button>
+              </div>
+            </aside>
+
+            <div class="story-main">
+              <div class="story-grid" data-story-grid>
+                <article class="story-card" data-industries="retail" data-services="artificial-intelligence cloud data development">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Artificial Intelligence</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Optimizing Inventory with AI, Cloud, and Predictive Analytics</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="sports-and-entertainment" data-services="data development">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Data</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Transforming Arena Operations Systems with Data and Design</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="public-sector" data-services="cloud data">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Cloud</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Shaping a Nation's Digital Transformation with Cloud</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="airlines" data-services="cloud development">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Cloud</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Optimizing Airlines Operations with Cloud</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="retail" data-services="cloud data development">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Cloud</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Revolutionizing Financial Reporting with Development and Cloud</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="public-sector" data-services="artificial-intelligence cloud data">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Artificial Intelligence</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Automating Legal Document Processing with Cloud</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="retail" data-services="artificial-intelligence data">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Artificial Intelligence</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Promoting Efficiency with Data</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="sports-and-entertainment" data-services="data development">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Data</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Enhancing Game Strategy with Data</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="airlines" data-services="development data">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Development</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Enhancing Aircraft Material Sales Through Development</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+                <article class="story-card" data-industries="public-sector" data-services="cloud development">
+                  <a href="#">
+                    <div class="story-card-media" style="--story-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=82');">
+                      <span class="story-card-badge">Cloud</span>
+                    </div>
+                    <div class="story-card-body">
+                      <h3>Optimizing National Map Services with Cloud</h3>
+                      <span class="story-card-cta">Read the Story <i class="ri-arrow-right-line" aria-hidden="true"></i></span>
+                    </div>
+                  </a>
+                </article>
+              </div>
+
+              <p class="story-empty" data-story-empty hidden>No customer stories match your filters.</p>
+
+              <nav class="story-pager" data-story-pager aria-label="Customer stories pagination"></nav>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────── LOGO CLOUD ─────────────────── -->
+        <section class="ks-section" id="logo-cloud">
+          <div class="ks-section-title">
+            <h2>Logo Cloud</h2>
+            <span class="ks-anchor">.trust-section · .section-kicker + .logo-cloud &gt; figure &gt; img</span>
+          </div>
+
+          <p class="section-kicker">Building AI for enterprise leaders across the Americas.</p>
+          <div class="logo-cloud" aria-label="Client logos">
+            <figure><img src="assets/clients/Walmart.svg" alt="Walmart" /></figure>
+            <figure><img src="assets/clients/NBC_Sports.svg" alt="NBC Sports" /></figure>
+            <figure><img src="assets/clients/NCAA.svg" alt="NCAA" /></figure>
+            <figure><img src="assets/clients/Ritz-Carlton.svg" alt="Ritz-Carlton" /></figure>
+            <figure><img src="assets/clients/Golden_State_Warriors.svg" alt="Golden State Warriors" /></figure>
+            <figure><img src="assets/clients/Volaris.svg" alt="Volaris" /></figure>
+            <figure><img src="assets/clients/Rappi.svg" alt="Rappi" /></figure>
+            <figure><img src="assets/clients/Dollarama.svg" alt="Dollarama" /></figure>
+            <figure><img src="assets/clients/Miami_Heat.svg" alt="Miami HEAT" /></figure>
+            <figure><img src="assets/clients/Holiday_Inn.svg" alt="Holiday Inn" /></figure>
+            <figure><img src="assets/clients/Lifemiles.svg" alt="Lifemiles" /></figure>
+            <figure><img src="assets/clients/Bain.svg" alt="Bain & Company" /></figure>
+          </div>
+        </section>
+
+        <!-- ─────────────────── RECOGNITION ─────────────────── -->
+        <section class="ks-section" id="recognition">
+          <div class="ks-section-title">
+            <h2>Recognition</h2>
+            <span class="ks-anchor">.recognition-layout · .award-feature + .partner-badge-grid</span>
+          </div>
+
+          <div class="recognition-layout">
+            <figure class="award-feature">
+              <img src="assets/awards/google-cloud-award.png" alt="Google Cloud Partner of the Year 2026 award" />
+              <figcaption>
+                <h2>Google Cloud Partner of the Year 2026</h2>
+                <p>Public Sector LATAM</p>
+              </figcaption>
+            </figure>
+            <div class="recognition-partners">
+              <p class="section-kicker">Partners that trust us</p>
+              <div class="partner-badge-grid" aria-label="Partner badges">
+                <div class="partner-badge badge-gcp-award">
+                  <img src="assets/partners/google-cloud-partner.svg" alt="Google Cloud Partner of the Year 2026 badge" />
+                </div>
+                <div class="partner-badge badge-gcp-cosell">
+                  <img src="assets/partners/google-cloud-cosell.svg" alt="Google Cloud co-sell partner badge" />
+                </div>
+                <div class="partner-badge badge-gcp-services">
+                  <img src="assets/partners/google-cloud-services.svg" alt="Google Cloud services partner badge" />
+                </div>
+                <div class="partner-badge badge-logo badge-microsoft">
+                  <img src="assets/partners/microsoft-partner.svg" alt="Microsoft" />
+                </div>
+              </div>
+              <div class="partner-logo-row" aria-label="Additional partner recognitions">
+                <div class="partner-badge badge-logo badge-salesforce">
+                  <img src="assets/partners/salesforce-partner.svg" alt="Salesforce Partner" />
+                </div>
+                <div class="partner-badge badge-logo badge-mandiant">
+                  <img src="assets/partners/mandiant-partner.svg" alt="Mandiant" />
+                </div>
+                <div class="partner-badge badge-logo badge-fortinet">
+                  <img src="assets/partners/fortinet-partner.svg" alt="Fortinet" />
+                </div>
+                <div class="partner-badge badge-aws">
+                  <img src="assets/partners/aws-partner.svg" alt="AWS Partner Select Tier Services badge" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ─────────────────── SECTION SYSTEM ─────────────────── -->
+        <section class="ks-section" id="section-system">
+          <div class="ks-section-title">
+            <h2>Section System</h2>
+            <span class="ks-anchor">.section &gt; .section-inner · plus heading patterns</span>
+          </div>
+
+          <p class="ks-note">
+            Every page block is a <span class="ks-inline-code">.section</span> (relative, overflow-hidden,
+            <span class="ks-inline-code">padding: 140px 24px</span>) wrapping a <span class="ks-inline-code">.section-inner</span>
+            container (<span class="ks-inline-code">min(1180px, 100%)</span>, centered). Add <span class="ks-inline-code">.narrow</span>
+            for centered 930px CTA blocks. Below are the four standard heading openers.
+          </p>
+
+          <span class="ks-subgroup-label">.section-heading — stacked heading + lede</span>
+          <div style="padding: 28px; background: var(--soft); border-radius: 16px; margin-bottom: 24px;">
+            <div class="section-heading">
+              <h2>Featured Stories</h2>
+              <p>How our teams drive innovation, solve complex challenges, and deliver impact at scale.</p>
+            </div>
+          </div>
+
+          <span class="ks-subgroup-label">.split-heading — heading left, subline right</span>
+          <div style="padding: 28px; background: var(--soft); border-radius: 16px; margin-bottom: 24px;">
+            <div class="split-heading">
+              <h2>A different kind of AI partner.</h2>
+              <p>Three things we do, every engagement.</p>
+            </div>
+          </div>
+
+          <span class="ks-subgroup-label">.services-intro-grid — two-column intro</span>
+          <div style="padding: 28px; background: var(--soft); border-radius: 16px; margin-bottom: 24px;">
+            <div class="services-intro-grid">
+              <h2>Why us.</h2>
+              <p>We ship AI in production for the largest enterprises in the Americas.</p>
+            </div>
+          </div>
+
+          <span class="ks-subgroup-label">.services-intro-stack — stacked intro</span>
+          <div style="padding: 28px; background: var(--soft); border-radius: 16px;">
+            <div class="services-intro-stack">
+              <h2>Our Customer Stories.</h2>
+              <p>Filter by industry and service, or search the full library.</p>
+            </div>
+          </div>
+
+          <span class="ks-subgroup-label" style="margin-bottom: 12px;">Eyebrow opener — .eyebrow + h2 + .hero-subhead</span>
+          <div style="max-width: 760px; padding: 28px; background: var(--soft); border-radius: 16px;">
             <p class="eyebrow">Our approach</p>
-            <h2>Three ways in.</h2>
-            <p style="color: var(--muted); font-size: var(--text-body); line-height: 1.5; max-width: 65ch; margin: 0;">
-              Strategy, Build, and Operate: each engagement starts where you are and scales with your ambition. We stay in the room from the first architecture decision to the last production runbook.
+            <h2 style="font-size: var(--text-section-title); margin: 0 0 12px;">Three ways in.</h2>
+            <p class="hero-subhead" style="margin: 0;">
+              Strategy, Build, and Operate: each engagement starts where you are and scales with your ambition.
             </p>
           </div>
-
-          <div class="ks-divider"></div>
-
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 24px; background: var(--soft); border-radius: 12px; font-size: 0.8125rem;">
-            <div>
-              <span class="ks-label">.eyebrow</span>
-              <div style="font-size: var(--text-label); font-weight: 600; color: var(--red); letter-spacing: 0.08em; text-transform: uppercase;">OUR APPROACH</div>
-              <div style="margin-top: 8px; color: var(--muted);">color: --red · uppercase · tracking 0.08em</div>
-            </div>
-            <div>
-              <span class="ks-label">h2 (section heading)</span>
-              <div style="font-size: 1.25rem; font-weight: 600; color: var(--black);">Three ways in.</div>
-              <div style="margin-top: 8px; color: var(--muted);">--text-title-md · weight 600 · lh 1.04</div>
-            </div>
-            <div>
-              <span class="ks-label">subhead / hero-subhead</span>
-              <div style="font-size: var(--text-body); color: var(--muted); line-height: 1.5;">Supporting copy that follows.</div>
-              <div style="margin-top: 8px; color: var(--muted);">--text-body · weight 400 · color --muted</div>
-            </div>
-          </div>
         </section>
 
-        <!-- ─────────────────── LABELS & TAGS ─────────────────── -->
-        <section class="ks-section" id="labels">
+        <!-- ─────────────────── HERO ─────────────────── -->
+        <section class="ks-section" id="hero">
           <div class="ks-section-title">
-            <h2>Labels &amp; Tags</h2>
-            <span class="ks-anchor">.eyebrow · .tagline · pill tags</span>
+            <h2>Hero</h2>
+            <span class="ks-anchor">.hero.section · .hero-inner &gt; .hero-copy + .hero-photo-system</span>
           </div>
 
-          <div class="ks-row" style="align-items: flex-start; gap: 32px;">
-            <div class="ks-item">
-              <span class="ks-label">.eyebrow (section kicker)</span>
-              <p class="eyebrow" style="margin: 0;">AI Engineering</p>
-            </div>
-            <div class="ks-item">
-              <span class="ks-label">.tagline (case card label)</span>
-              <p class="tagline" style="margin: 0;">Retail · ML Ops</p>
-            </div>
-            <div class="ks-item">
-              <span class="ks-label">Pill tag (case card industry chip)</span>
-              <div style="display: flex; gap: 8px;">
-                <span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border:1px solid rgba(18,18,18,0.12);border-radius:999px;font-size:0.8125rem;font-weight:600;color:var(--muted);">Retail</span>
-                <span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border:1px solid rgba(18,18,18,0.12);border-radius:999px;font-size:0.8125rem;font-weight:600;color:var(--muted);">ML Ops</span>
+          <p class="ks-note">
+            Home hero: copy block beside the photo system (main photo + two glass info cards + a glass accent). The
+            background carries a faint pointer-reactive glow driven by <span class="ks-inline-code">--mx / --my</span>.
+          </p>
+
+          <div class="ks-stage">
+            <section class="hero section" data-hero>
+              <div class="hero-inner">
+                <div class="hero-copy">
+                  <p class="eyebrow">AI ENGINEERING FOR ENTERPRISE</p>
+                  <h1>AI Engineered to Transform</h1>
+                  <p class="hero-subhead">
+                    We build AI systems for the largest companies in the Americas. The kind that has to work on Monday
+                    morning, in front of real users, at the scale the business actually runs at.
+                  </p>
+                  <div class="button-row">
+                    <a class="button button-black" href="#">
+                      <span>Talk to an AI engineer</span>
+                      <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+                    </a>
+                    <a class="button button-white" href="#">
+                      <span>See AI we've built</span>
+                      <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="hero-photo-system" aria-label="Applaudo teams building enterprise AI">
+                  <div class="hero-photo hero-photo-main"></div>
+                  <div class="hero-photo-card hero-proof-card">
+                    <span>Past launch</span>
+                    <p>Runbooks, retraining, dashboards, and the next version in view.</p>
+                  </div>
+                  <div class="hero-photo-card hero-team-card">
+                    <span>With your team</span>
+                    <p>Data, product, cloud, security, and AI engineering in one room.</p>
+                  </div>
+                  <div class="hero-glass-accent" aria-hidden="true"></div>
+                </div>
               </div>
-            </div>
-            <div class="ks-item">
-              <span class="ks-label">.ai-spark-chip</span>
-              <div class="ai-spark-chip" aria-hidden="true">
-                <img src="assets/ui/ai-spark.svg" alt="" />
-              </div>
-            </div>
+            </section>
           </div>
         </section>
 
-        <!-- ─────────────────── CTA PAIR ─────────────────── -->
-        <section class="ks-section final-cta" id="cta-pair">
-          <div class="section-inner narrow">
-            <div class="ks-section-title" style="border-color: rgba(255,255,255,0.2); margin-bottom: 48px;">
-              <h2 style="color: var(--black); margin:0;">CTA Section Pattern</h2>
-              <span class="ks-anchor" style="color: rgba(0,0,0,0.5);">.final-cta · glass texture background · Two-Button Rule</span>
-            </div>
-            <p class="eyebrow">Ready to build?</p>
-            <h2>The AI partner built for serious builders.</h2>
-            <p style="color: var(--muted);">800+ engineers. 23 years. The kind of AI systems that have to work on Monday morning.</p>
-            <div class="button-row centered">
-              <a class="button button-black" href="#"><span>Talk to an AI engineer</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
-              <a class="button button-white" href="#"><span>See AI we've built</span></a>
-            </div>
+        <!-- ─────────────────── AI STACK ─────────────────── -->
+        <section class="ks-section" id="ai-stack">
+          <div class="ks-section-title">
+            <h2>AI Stack</h2>
+            <span class="ks-anchor">.ai-stack-section · looping video bg + copy + partner logos</span>
+          </div>
+
+          <p class="ks-note">
+            Full-bleed section with a looping glass video behind the copy and an "inside our stack" model-partner logo panel.
+            On the home page the video also scrubs with pointer position.
+          </p>
+
+          <div class="ks-stage">
+            <section class="ai-stack-section">
+              <video class="ai-stack-video is-active" src="assets/video/Glass_forward.mp4" autoplay loop muted playsinline preload="auto" aria-hidden="true"></video>
+              <div class="ai-stack-inner">
+                <div class="ai-stack-copy">
+                  <div class="ai-spark-chip ai-stack-spark" aria-hidden="true">
+                    <img src="assets/ui/ai-spark.svg" alt="" />
+                  </div>
+                  <h2>AI is in the way we engineer. The way we test. The way we ship. The way we operate.</h2>
+                  <p>
+                    Not on top of our work. Inside it. From the first architecture decision to the last production runbook.
+                  </p>
+                </div>
+                <div class="ai-stack-panel" aria-label="AI partners inside our stack">
+                  <p class="ai-stack-label">Inside our stack</p>
+                  <div class="ai-stack-logos">
+                    <div class="ai-stack-logo"><img src="assets/stack/openai-logo.svg" alt="OpenAI" /></div>
+                    <div class="ai-stack-logo"><img src="assets/stack/claude-logo.svg" alt="Claude" /></div>
+                    <div class="ai-stack-logo"><img src="assets/stack/google-gemini-logo.svg" alt="Google Gemini" /></div>
+                    <div class="ai-stack-logo"><img src="assets/stack/microsoft-copilot-logo.svg" alt="Microsoft Copilot" /></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ─────────────────── VALUE PROP ─────────────────── -->
+        <section class="ks-section" id="value-prop">
+          <div class="ks-section-title">
+            <h2>Value Prop</h2>
+            <span class="ks-anchor">.value-prop-section · .value-prop-shell &gt; heading + body + CTA</span>
+          </div>
+
+          <div class="ks-stage">
+            <section class="section value-prop-section">
+              <div class="section-inner value-prop-shell">
+                <div class="value-prop-heading">
+                  <p class="eyebrow">AI-native delivery</p>
+                  <h2>The AI partner that engineers the full enterprise stack.</h2>
+                </div>
+                <div class="value-prop-body">
+                  <p class="value-prop-lede">
+                    We build across every layer: the application, the data that feeds it, the cloud it runs on, and the
+                    operating model your team runs it from. That's how AI reaches production and stays there.
+                  </p>
+                  <div class="value-prop-actions button-row">
+                    <a class="button button-black" href="#"><span>Talk to an AI engineer</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+                    <a class="button button-white" href="#"><span>See AI we've built</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ─────────────────── CTA SECTION ─────────────────── -->
+        <section class="ks-section" id="cta">
+          <div class="ks-section-title">
+            <h2>CTA Section</h2>
+            <span class="ks-anchor">.final-cta / .services-final-cta · .section-inner.narrow · Two-Button Rule</span>
+          </div>
+
+          <div class="ks-stage">
+            <section class="section final-cta">
+              <div class="section-inner narrow">
+                <h2>The first conversation isn't a scoping call.</h2>
+                <p>
+                  It's an honest exchange about where AI is going in your industry, what you should build now, what you
+                  should wait on, and whether we're the right people to build it with you.
+                </p>
+                <div class="button-row centered">
+                  <a class="button button-black" href="#"><span>Book a 30-minute conversation</span><i class="ri-calendar-schedule-line" aria-hidden="true"></i></a>
+                  <a class="button button-white" href="#"><span>Subscribe to the AI brief</span><i class="ri-mail-line" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <p class="ks-note" style="margin-top: 24px;">
+            Variant with <span class="ks-inline-code">.ai-spark-chip</span> opener (Services / Industries pages use
+            <span class="ks-inline-code">.services-final-cta</span>):
+          </p>
+          <div class="ks-stage">
+            <section class="section services-final-cta">
+              <div class="section-inner narrow">
+                <div class="ai-spark-chip" aria-hidden="true"><img src="assets/ui/ai-spark.svg" alt="" /></div>
+                <h2>Talk to an AI engineer.</h2>
+                <div class="button-row centered">
+                  <a class="button button-black" href="#"><span>Start a partnership</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i></a>
+                  <a class="button button-white" href="#"><span>See AI we've built</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </section>
           </div>
         </section>
 
@@ -940,11 +2127,13 @@
         <section class="ks-section" id="reveal">
           <div class="ks-section-title">
             <h2>Scroll Reveal</h2>
-            <span class="ks-anchor">.reveal → .is-visible added by IntersectionObserver in script.js · one-time trigger</span>
+            <span class="ks-anchor">.reveal → .is-visible via IntersectionObserver (threshold 0.16) · one-time</span>
           </div>
 
-          <p style="color: var(--muted); margin-bottom: 32px;">
-            Add <code style="font-family: monospace; font-size: 0.8125rem; background: var(--soft); padding: 2px 6px; border-radius: 4px;">.reveal</code> to any section or container. script.js observes it and adds <code style="font-family: monospace; font-size: 0.8125rem; background: var(--soft); padding: 2px 6px; border-radius: 4px;">.is-visible</code> at 12% viewport intersection. The CSS transition animates from the hidden state.
+          <p class="ks-note">
+            Add <span class="ks-inline-code">.reveal</span> to any section or container. script.js observes it and adds
+            <span class="ks-inline-code">.is-visible</span> when it enters the viewport, then disconnects (no re-trigger on
+            scroll-up). A <span class="ks-inline-code">.focus-section</span> also kicks off the stat count-up at the same moment.
           </p>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; background: var(--soft); border-radius: 12px; font-size: 0.8125rem; font-family: monospace;">
@@ -972,9 +2161,8 @@
 
           <div class="ks-divider"></div>
 
-          <!-- Live demo: scroll past the fold to trigger -->
-          <p style="color: var(--muted);">Live demo — the cards below are unobserved in this gallery (they start visible). On a real page, they'd enter hidden and reveal on scroll:</p>
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+          <p class="ks-note">Live demo — these cards start visible in the gallery; on a real page they'd enter hidden and reveal on scroll:</p>
+          <div class="ks-light-canvas" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
             <div class="glass-card reveal is-visible" style="padding: 24px;">
               <p class="eyebrow" style="margin-bottom: 8px;">Card 1</p>
               <h3 style="margin: 0; font-size: var(--text-title-sm); font-weight: 600;">Revealed on scroll</h3>
