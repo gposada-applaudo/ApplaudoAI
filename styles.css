@@ -444,7 +444,7 @@ img {
 .work-section,
 .engagement-section,
 .recognition-section {
-  background: #fff;
+  background: var(--white);
 }
 
 .section-inner {
@@ -568,7 +568,7 @@ img {
   display: grid;
   align-items: center;
   padding: clamp(64px, 7vw, 96px) 24px;
-  background: #fff;
+  background: var(--white);
 }
 
 .ai-stack-video {
@@ -699,7 +699,7 @@ img {
   height: 40px;
   padding: 0;
   margin-bottom: 24px;
-  border: 1px solid #f7f7f7;
+  border: 1px solid var(--soft);
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.68);
   box-shadow: 0 8px 18px rgba(18, 18, 18, 0.05);
@@ -985,7 +985,7 @@ p {
 }
 
 .button-black {
-  color: #fff;
+  color: var(--white);
   background: var(--black);
   box-shadow: none;
 }
@@ -1447,7 +1447,7 @@ p {
   padding: 0 22px;
   border: 1px solid rgba(255, 255, 255, 0.52);
   border-radius: var(--radius);
-  color: #fff;
+  color: var(--white);
   background: rgba(255, 255, 255, 0.22);
   box-shadow: 0 18px 54px rgba(18, 18, 18, 0.18);
   backdrop-filter: blur(24px) saturate(1.35);
@@ -1706,7 +1706,7 @@ p {
   padding: 2px 8px;
   border-radius: var(--radius-xs);
   background: rgba(18, 18, 18, 0.07);
-  color: var(--text-2);
+  color: var(--muted);
   font-size: 0.6875rem;
   font-weight: var(--demi);
   letter-spacing: 0.03em;
@@ -1732,10 +1732,7 @@ p {
 }
 
 .industries-section {
-  background:
-    radial-gradient(circle at 18% 20%, rgba(255, 64, 64, 0.08), transparent 26%),
-    radial-gradient(circle at 84% 60%, rgba(162, 94, 255, 0.12), transparent 28%),
-    var(--soft);
+  background: var(--soft);
 }
 
 .industry-lab {
@@ -1815,7 +1812,7 @@ p {
 
 .industry-stage-copy h3,
 .industry-stage-copy p {
-  color: #fff;
+  color: var(--white);
 }
 
 .industry-stage-copy h3 {
@@ -1838,7 +1835,7 @@ p {
   align-items: center;
   gap: 8px;
   margin-top: 14px;
-  color: #fff;
+  color: var(--white);
   font-size: 0.9375rem;
   font-weight: var(--demi);
 }
@@ -1955,10 +1952,6 @@ p {
     url("https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1300&q=82");
 }
 
-.industries-section {
-  padding-top: 120px;
-  padding-bottom: 120px;
-}
 
 .industry-board {
   display: grid;
@@ -1995,7 +1988,7 @@ p {
   justify-content: flex-end;
   padding: 22px;
   border-radius: var(--radius);
-  color: #fff;
+  color: var(--white);
   background-size: cover;
   background-position: center;
   box-shadow: 0 22px 54px rgba(18, 18, 18, 0.1);
@@ -2020,7 +2013,7 @@ p {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #fff;
+  color: var(--white);
   font-size: 1.25rem;
   line-height: 1.12;
   font-weight: var(--demi);
@@ -2106,7 +2099,7 @@ p {
   height: 46px;
   place-items: center;
   border-radius: 50%;
-  color: #fff;
+  color: var(--white);
   background: var(--black);
   font-size: 13px;
   font-weight: var(--demi);
@@ -2132,7 +2125,7 @@ p {
   justify-content: flex-end;
   padding: 34px;
   border-radius: var(--radius-xl);
-  color: #fff;
+  color: var(--white);
   background:
     linear-gradient(180deg, rgba(18, 18, 18, 0.1), rgba(18, 18, 18, 0.84)),
     url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=82");
@@ -2154,7 +2147,7 @@ p {
 .note-feature h3 {
   max-width: 660px;
   margin-bottom: 28px;
-  color: #fff;
+  color: var(--white);
   font-size: var(--text-title-md);
   line-height: 1.02;
 }
@@ -2165,7 +2158,7 @@ p {
 
 .note-feature .author span {
   color: var(--black);
-  background: #fff;
+  background: var(--white);
 }
 
 .note-list {
@@ -2208,7 +2201,7 @@ p {
 .partner-final-cta {
   position: relative;
   overflow: hidden;
-  background: #f7f7f7;
+  background: var(--soft);
 }
 
 .final-cta::before,
@@ -2580,7 +2573,7 @@ p {
   min-height: 34px;
   align-items: center;
   padding: 0 12px;
-  border: 1px solid #f7f7f7;
+  border: 1px solid var(--soft);
   border-radius: 999px;
   color: rgba(18, 18, 18, 0.76);
   background: rgba(255, 255, 255, 0.62);
@@ -3369,7 +3362,7 @@ p {
 
 .site-footer {
   padding: 64px 24px 28px;
-  color: #fff;
+  color: var(--white);
   background: var(--black);
 }
 
@@ -3404,7 +3397,7 @@ p {
 
 .footer-columns h2 {
   margin-bottom: 16px;
-  color: #fff;
+  color: var(--white);
   font-size: 0.9375rem;
   line-height: 1.3;
   font-weight: var(--demi);
@@ -3428,11 +3421,6 @@ p {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.recognition-section {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 247, 247, 0.92)),
-    radial-gradient(circle at 86% 18%, rgba(255, 64, 64, 0.08), transparent 24%);
-}
 
 .recognition-layout {
   display: grid;
@@ -4753,7 +4741,7 @@ p {
 .industries-argument-grid > p {
   font-size: var(--text-body);
   line-height: 1.7;
-  color: var(--text-secondary);
+  color: var(--muted);
   max-width: none;
   padding-top: 6px;
 }
@@ -4789,7 +4777,7 @@ p {
   flex-direction: column;
   justify-content: flex-end;
   text-decoration: none;
-  color: #fff;
+  color: var(--white);
   transition: flex-grow 460ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms ease;
 }
 
@@ -4900,7 +4888,7 @@ p {
 .industry-panel-ident h3 {
   font-size: clamp(1rem, 1.4vw, 1.2rem);
   font-weight: var(--demi);
-  color: #fff;
+  color: var(--white);
   margin: 0;
   line-height: 1.2;
 }
@@ -4959,7 +4947,7 @@ p {
 .industry-card-focus > p {
   font-size: var(--text-body-sm);
   line-height: 1.65;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin: 0;
 }
 
@@ -5081,7 +5069,7 @@ p {
   margin: 0;
   font-size: var(--text-body-sm);
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 .industry-row-arrow {
@@ -5115,7 +5103,7 @@ p {
 .industry-card-body {
   font-size: var(--text-body-sm);
   line-height: 1.65;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin: 0 0 14px;
   flex-grow: 1;
 }
@@ -5178,7 +5166,7 @@ p {
 .industries-constants-grid article > p {
   font-size: var(--text-body-sm);
   line-height: 1.7;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin: 0;
 }
 
