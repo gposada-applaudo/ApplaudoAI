@@ -250,7 +250,7 @@ img {
   bottom: 0;
   z-index: 0;
   width: 32%;
-  border-radius: 0 32px 32px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.88));
   backdrop-filter: blur(36px) saturate(1.35);
   -webkit-backdrop-filter: blur(36px) saturate(1.35);
@@ -272,7 +272,7 @@ img {
   min-height: 58px;
   padding: 12px 14px;
   border: 1px solid transparent;
-  border-radius: 22px;
+  border-radius: var(--radius-sm);
   color: var(--black);
   background: rgba(255, 255, 255, 0.34);
   font-size: 17px;
@@ -328,7 +328,7 @@ img {
   min-height: 34px;
   align-items: center;
   padding: 0 10px;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
   color: rgba(18, 18, 18, 0.64);
   font-size: 15px;
   line-height: 1.2;
@@ -364,7 +364,7 @@ img {
   gap: 4px;
   min-height: 178px;
   padding: 10px;
-  border-radius: 24px;
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.26);
 }
 
@@ -426,7 +426,7 @@ img {
 .section {
   position: relative;
   overflow: clip;
-  padding: 140px 24px;
+  padding: clamp(72px, 8vw, 108px) 24px;
 }
 
 .section:nth-of-type(even) {
@@ -526,7 +526,7 @@ img {
   width: 250px;
   padding: 22px;
   border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xl);
   background: rgba(255, 255, 255, 0.72);
   box-shadow: var(--shadow);
   backdrop-filter: blur(22px) saturate(1.35);
@@ -567,7 +567,7 @@ img {
   min-height: 560px;
   display: grid;
   align-items: center;
-  padding: 112px 24px;
+  padding: clamp(64px, 7vw, 96px) 24px;
   background: #fff;
 }
 
@@ -700,7 +700,7 @@ img {
   padding: 0;
   margin-bottom: 24px;
   border: 1px solid #f7f7f7;
-  border-radius: 16px;
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.68);
   box-shadow: 0 8px 18px rgba(18, 18, 18, 0.05);
   backdrop-filter: blur(22px) saturate(1.28);
@@ -1217,8 +1217,8 @@ p {
 
 .trust-section,
 .recognition-section {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: clamp(54px, 5vw, 72px);
+  padding-bottom: clamp(54px, 5vw, 72px);
   text-align: center;
 }
 
@@ -1806,7 +1806,7 @@ p {
   max-width: 590px;
   padding: 28px;
   border: 1px solid rgba(255, 255, 255, 0.58);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.28);
   box-shadow: 0 24px 70px rgba(18, 18, 18, 0.22);
   backdrop-filter: blur(28px) saturate(1.35);
@@ -3429,8 +3429,6 @@ p {
 }
 
 .recognition-section {
-  padding-top: 88px;
-  padding-bottom: 92px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 247, 247, 0.92)),
     radial-gradient(circle at 86% 18%, rgba(255, 64, 64, 0.08), transparent 24%);
@@ -3643,7 +3641,7 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 16px;
-    border-radius: 24px;
+    border-radius: var(--radius-sm);
   }
 
   .nav-item {
@@ -3730,7 +3728,10 @@ p {
     box-shadow: 0 12px 28px rgba(18, 18, 18, 0.07);
   }
 
-  .stats-row,
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .stats-intro,
   .three-column,
   .reasons-system,
@@ -4033,6 +4034,10 @@ p {
 }
 
 @media (max-width: 640px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
   .site-header {
     top: 10px;
     width: calc(100% - 20px);
@@ -4045,7 +4050,7 @@ p {
   }
 
   .section {
-    padding: 82px 18px;
+    padding: 54px 18px;
   }
 
   .hero {
@@ -4085,7 +4090,7 @@ p {
 
   .hero-photo-main {
     inset: 0 0 92px;
-    border-radius: 32px;
+    border-radius: var(--radius);
   }
 
   .hero-photo-card {
@@ -4212,7 +4217,7 @@ p {
   .ai-stack-logo {
     min-height: 74px;
     padding: 0 18px;
-    border-radius: 24px;
+    border-radius: var(--radius);
   }
 
   .ai-stack-logo img {
@@ -4928,10 +4933,12 @@ p {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.84);
   line-height: 1.52;
-  /* Top margin = gap below the title; it sits inside the overflow-hidden reveal,
-     so it's clipped at rest and only shows on hover. */
   margin: 14px 0 14px;
   padding-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Shared card-focus used by both panels (dark) and secondary cards (light) */
@@ -5672,7 +5679,7 @@ p {
   align-items: center;
   gap: 12px;
   padding: 11px 12px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   color: var(--muted);
   font-size: var(--text-body-sm);
   line-height: 1.25;
@@ -6432,7 +6439,7 @@ p {
 .work-entry-achievement-icon {
   width: 44px;
   height: 44px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--black);
   display: flex;
   align-items: center;
@@ -6609,17 +6616,22 @@ p {
 
 .section.solve-section {
   background: var(--soft);
+  /* Section-local spacing, anchored to the system scale (8/16/22/38/54). */
+  --solve-col-gap: clamp(22px, 3vw, 38px);
+  --solve-card-pad: 22px;
+  --solve-panel-pad: clamp(28px, 3.2vw, 38px);
 }
 
 .solve-head {
-  max-width: 780px;
-  margin-bottom: clamp(40px, 5vw, 64px);
+  max-width: 720px;
+  margin-bottom: clamp(38px, 5vw, 54px);
 }
 
 .solve-head h2 {
+  /* Standard section-headline size (--text-title-md); wraps and self-balances
+     rather than forcing one line that the section's overflow: clip would cut. */
   margin: 0 0 18px;
-  max-width: none;
-  white-space: nowrap;
+  text-wrap: balance;
 }
 
 .solve-intro {
@@ -6627,30 +6639,39 @@ p {
   font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
   line-height: 1.58;
   margin: 0;
-  max-width: 620px;
+  max-width: 60ch;
 }
 
 .solve-module {
   display: grid;
-  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(32px, 5vw, 72px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto 1fr auto;
+  /* label caps the left column; cards + panel share row 2 so they top- and
+     bottom-align; the CTA hangs below the panel. */
+  grid-template-areas:
+    "label ."
+    "list  panel"
+    ".     cta";
+  column-gap: var(--solve-col-gap);
+  row-gap: 16px;
   align-items: stretch;
 }
 
 /* ─── Left: selectable list ─── */
 .solve-list {
+  grid-area: list;
   display: grid;
-  align-content: start;
-  gap: 12px;
+  grid-auto-rows: 1fr; /* the three cards share the height of the tallest */
+  gap: 16px;
 }
 
+/* Sentence case, not a second uppercase kicker: avoids stacking two tracked
+   labels (the eyebrow is the section's only kicker). */
 .solve-list-label {
-  margin: 0 0 4px;
-  padding-left: clamp(18px, 2vw, 22px);
-  font-size: var(--text-label);
+  grid-area: label;
+  margin: 0;
+  font-size: var(--text-body-sm);
   font-weight: var(--demi);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--muted);
 }
 
@@ -6658,21 +6679,17 @@ p {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
   width: 100%;
   text-align: left;
   font: inherit;
   cursor: pointer;
   color: var(--muted);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.44));
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.42));
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: var(--radius);
-  min-height: clamp(82px, 7.2vw, 96px);
-  padding: clamp(18px, 2vw, 22px);
-  box-shadow: 0 14px 34px rgba(18, 18, 18, 0.035);
-  backdrop-filter: blur(18px) saturate(1.25);
-  -webkit-backdrop-filter: blur(18px) saturate(1.25);
-  /* entrance + state transitions (transform/opacity for motion, color/bg for state) */
+  padding: var(--solve-card-pad);
+  /* flat at rest (Flat-By-Default); elevation only on the active selection */
   opacity: 0;
   transform: translateY(14px);
   transition:
@@ -6693,20 +6710,21 @@ p {
 
 .solve-item:hover {
   color: var(--black);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.54));
-  border-color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.56));
+  border-color: rgba(255, 255, 255, 0.92);
 }
 
 .solve-item.is-active {
   color: var(--black);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.66));
-  border-color: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 18px 46px rgba(18, 18, 18, 0.06);
+  background: var(--white);
+  border-color: var(--line);
+  box-shadow: 0 10px 30px rgba(18, 18, 18, 0.06);
 }
 
 .solve-item-num {
   font-size: var(--text-label);
   font-weight: var(--demi);
+  letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
   color: var(--muted);
   transition: color 220ms ease;
@@ -6717,10 +6735,9 @@ p {
 }
 
 .solve-item-title {
-  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  font-size: var(--text-body);
   font-weight: var(--demi);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
 .solve-item-arrow {
@@ -6738,30 +6755,24 @@ p {
 }
 
 /* ─── Right: cross-fading detail panel ─── */
-.solve-detail {
-  position: relative;
-  display: grid;
-  align-content: start;
-}
-
 .solve-panels {
+  grid-area: panel;
   position: relative;
-  min-height: clamp(320px, 30vw, 372px);
+  display: grid; /* stack panels in one cell so the surface auto-sizes to the tallest */
+  min-height: clamp(280px, 26vw, 320px);
   border: 1px solid rgba(255, 255, 255, 0.76);
   border-radius: var(--radius);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.52)),
-    radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(255, 255, 255, 0.72), transparent 38%);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.6)),
+    radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(255, 255, 255, 0.7), transparent 40%);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(24px) saturate(1.35);
-  -webkit-backdrop-filter: blur(24px) saturate(1.35);
   overflow: clip;
 }
 
 .solve-panel {
-  position: absolute;
-  inset: 0;
-  padding: clamp(28px, 3vw, 40px);
+  grid-area: 1 / 1;
+  position: relative;
+  padding: var(--solve-panel-pad);
   opacity: 0;
   transform: translateY(14px);
   pointer-events: none;
@@ -6795,39 +6806,37 @@ p {
   z-index: 1;
   display: inline-grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
   background: var(--black);
   color: var(--white);
-  font-size: 24px;
-  margin-bottom: clamp(20px, 2.5vw, 28px);
+  font-size: 22px;
+  margin-bottom: 22px;
 }
 
 .solve-panel h3 {
   position: relative;
   z-index: 1;
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-size: var(--text-title-sm);
   font-weight: var(--demi);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+  line-height: 1.2;
   margin: 0 0 16px;
-  max-width: 46ch;
 }
 
 .solve-panel p {
   position: relative;
   z-index: 1;
-  font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+  font-size: var(--text-body);
   line-height: 1.6;
   color: var(--muted);
   margin: 0;
-  max-width: 46ch;
+  max-width: 52ch;
 }
 
 .solve-cta {
+  grid-area: cta;
   justify-self: start;
-  margin-top: clamp(22px, 2.6vw, 30px);
 }
 
 .solve-cta i {
@@ -6840,33 +6849,34 @@ p {
 
 /* ─── What we solve — responsive ─── */
 @media (max-width: 860px) {
-  .solve-head h2 {
-    white-space: normal;
-  }
-
   .solve-module {
     grid-template-columns: 1fr;
-    gap: clamp(28px, 5vw, 40px);
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "label"
+      "list"
+      "panel"
+      "cta";
+    row-gap: clamp(16px, 4vw, 22px);
   }
 
   .solve-panels {
+    display: block;
     min-height: 0;
   }
 
-  /* Absolute cross-fade doesn't collapse height — switch to flow + toggle on mobile. */
+  /* One panel at a time; no cross-fade stacking on mobile. */
   .solve-panel {
-    position: relative;
-    inset: auto;
+    display: none;
     opacity: 1;
     transform: none;
     pointer-events: auto;
-    display: none;
   }
   .solve-panel.is-active {
     display: block;
   }
 
   .solve-panel-num {
-    font-size: clamp(88px, 22vw, 140px);
+    font-size: clamp(80px, 20vw, 132px);
   }
 }
