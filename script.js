@@ -4,7 +4,7 @@ const aiStackSection = document.querySelector(".ai-stack-section");
 const aiStackVideo = document.querySelector(".ai-stack-video");
 const servicePillarGroups = document.querySelectorAll("[data-service-pillars]");
 const interactiveItems = document.querySelectorAll(
-  ".button, .icon-button, .glass-card, .stats-row div, .case-card, .industry-stage, .industry-tile, .note-card, .note-feature, .note-row, .reason-visual, .service-pillar, .partner-status-item, .partner-stack-row, .partner-proof-card, .partner-lead-card"
+  ".button, .icon-button, .glass-card, .stats-row div, .case-card, .industry-stage, .industry-tile, .note-card, .note-feature, .note-row, .reason-visual, .solve-panels, .service-pillar, .partner-status-item, .partner-stack-row, .partner-proof-card, .partner-lead-card"
 );
 const desktopQuery = window.matchMedia("(min-width: 981px)");
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -169,6 +169,30 @@ servicePillarGroups.forEach((group) => {
   const buildPillar = group.querySelector('[data-pillar="build"]');
   if (buildPillar) setActivePillar(buildPillar);
 });
+
+// "What we solve" — selectable list drives the cross-fading detail panel.
+const solveModule = document.querySelector("[data-solve]");
+if (solveModule) {
+  const solveItems = solveModule.querySelectorAll(".solve-item");
+  const solvePanels = solveModule.querySelectorAll(".solve-panel");
+
+  const setActiveSolve = (key) => {
+    solveItems.forEach((item) => {
+      const on = item.dataset.solveItem === key;
+      item.classList.toggle("is-active", on);
+      item.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    solvePanels.forEach((panel) => {
+      panel.classList.toggle("is-active", panel.dataset.solvePanel === key);
+    });
+  };
+
+  solveItems.forEach((item) => {
+    item.addEventListener("pointerenter", () => setActiveSolve(item.dataset.solveItem));
+    item.addEventListener("focusin", () => setActiveSolve(item.dataset.solveItem));
+    item.addEventListener("click", () => setActiveSolve(item.dataset.solveItem));
+  });
+}
 
 addEventListener("scroll", updateScrollProgress, { passive: true });
 updateScrollProgress();
