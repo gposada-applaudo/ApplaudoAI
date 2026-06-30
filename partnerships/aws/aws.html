@@ -30,14 +30,17 @@
       .mega-menu {
         background: oklch(99.5% 0.003 25);
       }
-      /* ─── Replace aws-orange with Applaudo red throughout ─── */
+      /* ─── AWS brand orange ─── */
+      .aws-partner-page {
+        --partner-accent: #FF9900;
+      }
 
       /* Hero overlay gradient */
       .partner-hero::before {
         background:
           linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.78) 43%, rgba(255,255,255,0.18) 100%),
-          radial-gradient(circle at 20% 44%, color-mix(in oklab, var(--red) 10%, transparent), transparent 30%),
-          radial-gradient(circle at 84% 62%, rgba(255, 64, 64, 0.06), transparent 26%);
+          radial-gradient(circle at 20% 44%, color-mix(in oklab, var(--partner-accent) 10%, transparent), transparent 30%),
+          radial-gradient(circle at 84% 62%, rgba(255, 153, 0, 0.06), transparent 26%);
       }
 
       /* ─── Hero badge: square logo area + auto-height text area ─── */
@@ -54,7 +57,7 @@
         box-shadow: 0 22px 58px rgba(18, 18, 18, 0.1);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        --partner-accent: var(--red);
+        --partner-accent: #FF9900; /* inherited from .aws-partner-page; explicit here for badge context */
       }
 
       .partner-hero-badge::before {
@@ -134,8 +137,8 @@
 
       /* Stack row hover: subtle highlight restored */
       .partner-stack-row:hover {
-        border-color: color-mix(in oklab, var(--red) 30%, rgba(18, 18, 18, 0.12));
-        background: color-mix(in oklab, var(--red) 5%, transparent);
+        border-color: color-mix(in oklab, var(--partner-accent) 30%, rgba(18, 18, 18, 0.12));
+        background: color-mix(in oklab, var(--partner-accent) 5%, transparent);
       }
 
       /* Co-sell section: neutral soft instead of orange-tinted */
@@ -148,11 +151,11 @@
         background: var(--black);
       }
 
-      /* Lead card: replace orange radial with red */
+      /* Lead card: orange radial accent */
       .partner-lead-card {
         background:
           linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.06)),
-          radial-gradient(circle at 74% 18%, color-mix(in oklab, var(--red) 18%, transparent), transparent 34%);
+          radial-gradient(circle at 74% 18%, color-mix(in oklab, var(--partner-accent) 18%, transparent), transparent 34%);
       }
 
       /* Lead photo avatar: show AWS partner badge */

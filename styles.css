@@ -4460,9 +4460,9 @@ p {
   gap: 9px;
 }
 
-.partner-card-aws       { border-top-color: var(--aws-orange); }
-.partner-card-microsoft { border-top-color: #0078D4; }
-.partner-card-gcp       { border-top-color: #4285F4; }
+.partner-card-aws       { border-top-color: #FF9900; }
+.partner-card-microsoft { border-top-color: var(--red); }
+.partner-card-gcp       { border-top-color: #3399FF; }
 
 .partner-card-logo {
   height: 104px;

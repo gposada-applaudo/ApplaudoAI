@@ -429,6 +429,7 @@
           <a href="#reason">Reason Item</a>
 
           <span class="ks-nav-group">Composite</span>
+          <a href="#solve-module">Solve Module</a>
           <a href="#stats">Stats Row</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#story-browser">Story Browser</a>
@@ -681,13 +682,17 @@
           <div class="ks-divider"></div>
 
           <span class="ks-subgroup-label">Border radius tokens</span>
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
             <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
               <span class="ks-label">pill · 999px</span>
               <div style="height: 44px; background: var(--black); border-radius: 999px;"></div>
             </div>
             <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
-              <span class="ks-label">--radius / --radius-xl · 32px</span>
+              <span class="ks-label">--radius-xl · 32px</span>
+              <div style="height: 80px; background: var(--black); border-radius: 32px;"></div>
+            </div>
+            <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
+              <span class="ks-label">--radius · 32px</span>
               <div style="height: 80px; background: var(--black); border-radius: 32px;"></div>
             </div>
             <div style="padding: 20px; background: var(--soft); border-radius: 12px;">
@@ -698,6 +703,12 @@
               <span class="ks-label">--radius-xs · 6px</span>
               <div style="height: 80px; background: var(--black); border-radius: 6px;"></div>
             </div>
+          </div>
+          <div class="ks-spec" style="margin-top: 12px;">
+            <div><strong>--radius-xl (32px):</strong> outer shell of nested card structures — a card that contains inner framed elements. e.g. <code>.hero-photo-card</code>.</div>
+            <div><strong>--radius (32px):</strong> standalone card surfaces — any card that stands alone without a nested inner frame. e.g. <code>.solve-item</code>, <code>.industry-stage-copy</code>. Same value as --radius-xl; the distinction is context, not size.</div>
+            <div><strong>--radius-sm (18px):</strong> inner frames and small interactive elements — icon boxes, chips, nav items, mega-menu links. e.g. <code>.solve-panel-icon</code>, <code>.ai-spark-chip</code>.</div>
+            <div><strong>--radius-xs (6px):</strong> pills, tags, and inline labels. e.g. <code>.case-pill</code>, code snippets.</div>
           </div>
 
           <div class="ks-divider"></div>
@@ -720,6 +731,25 @@
               <div style="display: grid; grid-template-columns: var(--section-panel-cols); gap: var(--section-panel-gap);">
                 <div style="height: 52px; background: var(--black); border-radius: 8px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.75rem; font-weight:600;">label 0.4fr</div>
                 <div style="height: 52px; background: rgba(18,18,18,0.12); border-radius: 8px; display:flex; align-items:center; justify-content:center; color:var(--black); font-size:0.75rem; font-weight:600;">content panel 1fr</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ks-divider"></div>
+
+          <span class="ks-subgroup-label">Module-scoped tokens</span>
+          <p class="ks-note">Some layout variables are scoped to a specific section rather than placed in <code>:root</code>. They follow the same naming convention but only apply inside their component.</p>
+          <div style="display: grid; gap: 12px;">
+            <div>
+              <span class="ks-label">--solve-col-gap · clamp(22px, 3vw, 38px) · scoped to .section.solve-section</span>
+              <div style="display: grid; grid-template-columns: 1fr var(--solve-col-gap, clamp(22px, 3vw, 38px)) 1fr; align-items: center; height: 40px;">
+                <div style="height: 40px; background: var(--black); border-radius: 8px;"></div>
+                <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                  <div style="width: 100%; height: 1px; background: var(--red); position: relative;">
+                    <span style="position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-family: monospace; font-size: 0.6rem; color: var(--red); white-space: nowrap;">gap</span>
+                  </div>
+                </div>
+                <div style="height: 40px; background: rgba(18,18,18,0.15); border-radius: 8px;"></div>
               </div>
             </div>
           </div>
@@ -1474,6 +1504,80 @@
           </div>
         </section>
 
+        <!-- ─────────────────── SOLVE MODULE ─────────────────── -->
+        <section class="ks-section" id="solve-module">
+          <div class="ks-section-title">
+            <h2>Solve Module</h2>
+            <span class="ks-anchor">.solve-module · tabbed list + panel · equal 50/50 columns · [data-solve]</span>
+          </div>
+
+          <p class="ks-note">
+            Two-column tabbed interface. Left column: <span class="ks-inline-code">.solve-list</span> of
+            <span class="ks-inline-code">.solve-item</span> tab buttons. Right column:
+            <span class="ks-inline-code">.solve-panels</span> showing the active
+            <span class="ks-inline-code">.solve-panel</span>. Wired by script.js via
+            <span class="ks-inline-code">[data-solve]</span>, <span class="ks-inline-code">data-solve-item</span>,
+            and <span class="ks-inline-code">data-solve-panel</span> attributes.
+            Grid areas: <code>"label ." / "list panel" / ". cta"</code>.
+          </p>
+
+          <div style="--solve-col-gap: clamp(22px, 3vw, 38px); --solve-card-pad: 22px; --solve-panel-pad: clamp(28px, 3.2vw, 38px);">
+            <div class="solve-module" data-solve>
+              <p class="solve-list-label">In practice, this looks like</p>
+              <div class="solve-list" role="tablist" aria-label="What we solve">
+                <button class="solve-item is-active" type="button" role="tab" aria-selected="true" data-solve-item="strategy">
+                  <span class="solve-item-num">01</span>
+                  <span class="solve-item-title">AI product strategy</span>
+                  <i class="ri-arrow-right-line solve-item-arrow" aria-hidden="true"></i>
+                </button>
+                <button class="solve-item" type="button" role="tab" aria-selected="false" data-solve-item="deploy">
+                  <span class="solve-item-num">02</span>
+                  <span class="solve-item-title">Orchestration &amp; intelligent systems deployment</span>
+                  <i class="ri-arrow-right-line solve-item-arrow" aria-hidden="true"></i>
+                </button>
+                <button class="solve-item" type="button" role="tab" aria-selected="false" data-solve-item="security">
+                  <span class="solve-item-num">03</span>
+                  <span class="solve-item-title">Security, governance &amp; compliance</span>
+                  <i class="ri-arrow-right-line solve-item-arrow" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="solve-panels">
+                <article class="solve-panel is-active" role="tabpanel" data-solve-panel="strategy">
+                  <span class="solve-panel-num" aria-hidden="true">01</span>
+                  <span class="solve-panel-icon"><i class="ri-compass-3-line" aria-hidden="true"></i></span>
+                  <h3>AI product strategy</h3>
+                  <p>We define which problems AI can solve in your business, in what order, with what data. You get a build sequence and a decision framework, not a roadmap deck.</p>
+                </article>
+                <article class="solve-panel" role="tabpanel" data-solve-panel="deploy">
+                  <span class="solve-panel-num" aria-hidden="true">02</span>
+                  <span class="solve-panel-icon"><i class="ri-route-line" aria-hidden="true"></i></span>
+                  <h3>Orchestration &amp; intelligent systems deployment</h3>
+                  <p>We wire agents, models, and tools into production workflows. Multi-step reasoning, tool-use, retrieval, and safety layers all in place before we hand over the keys.</p>
+                </article>
+                <article class="solve-panel" role="tabpanel" data-solve-panel="security">
+                  <span class="solve-panel-num" aria-hidden="true">03</span>
+                  <span class="solve-panel-icon"><i class="ri-shield-check-line" aria-hidden="true"></i></span>
+                  <h3>Security, governance &amp; compliance</h3>
+                  <p>Enterprise AI needs guardrails before it ships: data access controls, audit trails, bias testing, and the regulatory review your legal team will ask for.</p>
+                </article>
+              </div>
+              <a class="button button-black solve-cta" href="#">
+                <span>Explore all services</span>
+                <i class="ri-arrow-right-line" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="ks-spec" style="margin-top: 28px;">
+            <div><strong>Grid:</strong> <code>repeat(2, minmax(0, 1fr))</code> — equal 50/50 columns with <code>grid-template-areas: "label ." / "list panel" / ". cta"</code></div>
+            <div><strong>Column gap:</strong> <code>--solve-col-gap: clamp(22px, 3vw, 38px)</code> · row-gap: 16px</div>
+            <div><strong>Padding tokens:</strong> <code>--solve-card-pad: 22px</code> on <code>.solve-item</code> · <code>--solve-panel-pad: clamp(28px, 3.2vw, 38px)</code> on <code>.solve-panel</code></div>
+            <div><strong>Border-radius:</strong> <code>.solve-item</code> uses <code>var(--radius)</code> (standalone card, 32px) — not <code>--radius-sm</code></div>
+            <div><strong>Reveal:</strong> <code>.solve-section.is-visible .solve-item</code> stagger: item 2 +80ms, item 3 +160ms</div>
+            <div><strong>Responsive:</strong> stacks to single column at ≤ 980px (tablet). Panel moves below list.</div>
+          </div>
+        </section>
+
         <!-- ─────────────────── STATS ROW ─────────────────── -->
         <section class="ks-section focus-section reveal" id="stats">
           <div class="ks-section-title">
@@ -1485,6 +1589,7 @@
             Numbers count up from zero (<span class="ks-inline-code">data-stat-value</span> + optional
             <span class="ks-inline-code">data-stat-suffix</span>) the first time the parent
             <span class="ks-inline-code">.focus-section</span> scrolls into view. Each cell pairs a RemixIcon, the figure, and a label.
+            Responsive: 4-col desktop → 2-col at ≤ 980px → 1-col at ≤ 640px.
           </p>
 
           <div class="focus-layout">
@@ -1917,9 +2022,15 @@
 
           <p class="ks-note">
             Every page block is a <span class="ks-inline-code">.section</span> (relative, overflow-hidden,
-            <span class="ks-inline-code">padding: 140px 24px</span>) wrapping a <span class="ks-inline-code">.section-inner</span>
+            <span class="ks-inline-code">padding: clamp(72px, 8vw, 108px) 24px</span> — mobile ≤640px: <span class="ks-inline-code">54px 18px</span>)
+            wrapping a <span class="ks-inline-code">.section-inner</span>
             container (<span class="ks-inline-code">min(1180px, 100%)</span>, centered). Add <span class="ks-inline-code">.narrow</span>
-            for centered 930px CTA blocks. Below are the four standard heading openers.
+            for centered 930px CTA blocks.
+            Alternating backgrounds are driven by <span class="ks-inline-code">.section:nth-of-type(even)</span>.
+            Sections with fixed backgrounds are pinned via two-class selectors
+            (e.g. <span class="ks-inline-code">.section.solve-section</span> — specificity 0,2,0)
+            so inserting or reordering sections doesn't break parity.
+            Below are the four standard heading openers.
           </p>
 
           <span class="ks-subgroup-label">.section-heading — stacked heading + lede</span>
